@@ -8,12 +8,12 @@ app.set('view engine', 'pug');
 
 app.get(['/', '/:pageName'], (req, res) => {
   let pageName = req.params.pageName;
-  if (!pageName) pageName = 'index';
+  if (!pageName) pageName = 'admin';
 
   res.render(`pages/${pageName}.pug`, (err, html) => {
     if (err) {
       if (err.message.indexOf('Failed to lookup view') !== -1) {
-        return res.send('Страница не найдена');
+        return res.send(`Страница не найдена   views/pages/${pageName}.pug`);
       }
       throw err;
     }

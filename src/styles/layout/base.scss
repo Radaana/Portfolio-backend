@@ -5,10 +5,12 @@ body, html {
 body {
   font-size: 16px;
   line-height: 1.42;
-  color: $text-color;
+  // color: $text-color;
+  color: #455a64;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  @include roboto();
+  // @include roboto();
+  font-family: 'Roboto', Helvetica, sans-serif;
 }
 
 .wrapper {

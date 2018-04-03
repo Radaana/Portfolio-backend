@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  // background: $green;
+  background: #16c2aa;
+  align-items:  center;
+  color: #fff;
+
+  a {
+    color: inherit;
+  }
+}
