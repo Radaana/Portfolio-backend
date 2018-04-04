@@ -44,8 +44,8 @@ module.exports = {
                       loader: "sass-resources-loader",
                       options: {
                         resources: [
-                          "./src/styles/variables.scss",
-                          "./src/styles/mixins.scss"
+                          "./src/styles/layout/variables.scss",
+                          "./src/styles/layout/mixins.scss"
                         ]
                       }
                     }
@@ -68,7 +68,7 @@ module.exports = {
         test: /\.(png|jpg|gif)$/,
         loader: "file-loader",
         options: {
-          name: "[name].[ext]?[hash]"
+          name: "images/[name].[ext]?[hash]"
         }
       },
       {
@@ -86,7 +86,7 @@ module.exports = {
     alias: {
       vue$: "vue/dist/vue.esm.js",
       styles: path.resolve(__dirname, "src/styles/components/"),
-      images: path.resolve(__dirname, "src/assets/img/")
+      images: path.resolve(__dirname, "src")
     },
     extensions: ["*", ".js", ".vue", ".json"]
   },

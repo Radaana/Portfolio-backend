@@ -6,10 +6,12 @@ $grey: #373e42;
 $light-grey: #dfdcd5;
 
 @import 'normalize.css';
-@import './layout/fonts.scss';
-@import './layout/base.scss';
+@import './layout/**/*';
 
 @import './icons/_sass-inline-svg.scss';
 @import './icons/_sass-inline-svg-data.scss';
 
 @import './blocks/**/*';
+
+
+
