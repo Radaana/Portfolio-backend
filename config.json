@@ -1,4 +1,11 @@
 {
+  "db": {
+    "host": "ds137019.mlab.com",
+    "port": "37019",
+    "name": "portfolio",
+    "user": "root",
+    "password": "12345"
+  },
   "mail": {
     "subject": "Сообщение с сайта",
     "smtp": {
@@ -6,8 +13,8 @@
       "port": 465,
       "secure": true,
       "auth": {
-        "user": "webinar.loftschool@gmail.com",
-        "pass": "mailPassword2018"
+        "user": "web***@gmail.com",
+        "pass": "mai***2018"
       }
     }
   }

@@ -13,6 +13,10 @@ const routes = [
     component: About
   },
   {
+    path: '/admin',
+    component: About
+  },
+  {
     path: '/blog',
     component: Blog
   },
