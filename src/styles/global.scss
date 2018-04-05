@@ -1,0 +1,41 @@
+html {
+    font-size: $font-size;
+
+    @include screen-sm
+    {
+        $sm: $font-size - 1;
+        font-size: rem($sm);
+    }
+
+    @include screen-xs
+    {
+        $xs: $font-size - 2;
+        font-size: rem($xs);
+    }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'robotoregular', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*, *::before, *::after { 
+    box-sizing: border-box; 
+}
+
+body, html {
+    width: 100%;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}

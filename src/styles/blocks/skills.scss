@@ -1,0 +1,22 @@
+.skills__title {
+    font-family: 'robotomedium', sans-serif;
+    font-size: rem(28px);
+    color: $gray;
+    margin: 0 0 rem(10px) 0;
+    padding: 0;
+
+    @include screen-sm {
+        text-align: center;
+    }
+       
+}
+
+.skills__row {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include screen-sm {
+        justify-content: center;
+    }
+    
+}

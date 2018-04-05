@@ -1,0 +1,13 @@
+.textarea {
+    background-color: #fff;
+    padding: rem(15px);
+    width: 100%;
+    height: rem(140px);
+    border: none;
+    border-radius: 30px;
+    color: $text;
+
+    &.error {
+        border: 2px solid red;
+    }
+}

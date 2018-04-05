@@ -1,0 +1,28 @@
+.auth {
+    min-width: rem(380px);
+    background-color: rgba(#000, 0.5);
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px; 
+    overflow: hidden;
+    padding-top: rem(30px);
+
+    @include screen-sm {
+        min-width: rem(348px);
+    }
+
+    @include screen-xs {
+        min-width: rem(100px);
+        max-width: rem(348px);
+    }
+}
+
+
+.auth__title {
+    margin: 0 auto;
+}
+
+.auth__form {
+    width: 100%;
+    flex-grow: 1;
+}

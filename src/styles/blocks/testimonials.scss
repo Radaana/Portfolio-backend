@@ -1,0 +1,25 @@
+.testimonials {
+    display: flex;
+
+    @include screen-xs {
+        flex-direction: column;
+    }
+    
+}
+
+.testimonials__left {
+    width: 50%;
+    
+    @include screen-xs {
+        width: 100%;
+        margin-bottom: rem(25px);
+    }
+}
+
+.testimonials__right {
+    width: 50%;
+
+    @include screen-xs {
+        width: 100%;
+    }
+}

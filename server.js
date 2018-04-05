@@ -8,7 +8,7 @@ app.set('view engine', 'pug');
 
 app.get(['/', '/:pageName'], (req, res) => {
   let pageName = req.params.pageName;
-  if (!pageName) pageName = 'admin';
+  if (!pageName) pageName = 'index';
 
   res.render(`pages/${pageName}.pug`, (err, html) => {
     if (err) {

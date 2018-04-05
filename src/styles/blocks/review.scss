@@ -1,0 +1,33 @@
+.review {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    &:after
+    {
+        position: absolute;
+        left: 5%;
+        top: 35%;
+
+        width: rem(75px);
+        height: rem(60px);
+
+        content: '';
+
+        background-image: url('../img/quotation.png');
+    }
+}
+
+.review__author {
+    font-style: italic;
+    color: $green;
+    font-weight: bold;
+}
+
+.review__text {
+    margin : 0;
+    padding: rem(20px);
+    font-style: italic;
+    line-height: rem(24px);
+}

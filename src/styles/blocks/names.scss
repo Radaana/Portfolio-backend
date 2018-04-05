@@ -1,0 +1,49 @@
+.names {
+    // width: 30%;
+    padding: rem(20px) rem(20px);
+
+   
+}
+
+.names__list {
+    position: sticky;
+    top: 20px;
+}
+
+.names__link {
+    display: block;
+    text-align: right;
+    padding: rem(17px) rem(15px);
+    color: $text;
+    border-right: 3px solid transparent;
+
+    &:hover {
+        border-right: 3px solid $green;
+        color: $green;
+        font-family: 'robotobold', sans-serif;
+    }
+
+    &--active {
+        border-right: 3px solid $green;
+        color: $green;
+        font-family: 'robotobold', sans-serif;
+    }
+
+    @include screen-sm {
+        color: #fff;
+
+        &:hover {
+            border-right: 3px solid #fff;
+            color: #fff;
+            font-family: 'robotobold', sans-serif;
+        }
+
+        &--active {
+            border-right: 3px solid #fff;
+            color: #fff;
+            font-family: 'robotobold', sans-serif;
+        }
+    }
+}
+
+

@@ -1,0 +1,23 @@
+.triangles {
+  width: 100%;
+  margin: 0;
+  height: auto;
+  bottom: 100%;
+  z-index: 2;
+  position: absolute;
+
+
+    &--sameColor {
+        .traingle {
+            @include triangleColors(#faf8f0, #faf8f0)
+          }
+    }
+
+}
+
+.traingle {
+    display: block;
+
+    @include triangleColors(#ebefe2, #f4f5f0)
+  }
+  

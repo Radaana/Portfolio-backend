@@ -1,0 +1,86 @@
+.welcome {
+    background: url('../img/welcome-bg.jpg') center center no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100vh;
+
+    @include screen-sm {
+        background: url('../img/welcome-bg-sm.jpg') center center no-repeat;
+        background-size: cover;
+    }
+
+    @include screen-xs {
+        background: url('../img/welcome-bg-xs.jpg') center center no-repeat;
+        background-size: cover;
+        padding: 0 5%;
+    }
+}
+
+.welcome__webgl {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    // z-index: -5;
+}
+
+.welcome__flipper {
+    min-width: rem(380px);
+    min-height: rem(395px);
+
+
+    @include screen-sm {
+        min-width: rem(348px);
+    }
+
+    @include screen-xs {
+        min-width: rem(300px);
+    }
+}
+
+.welcome__inner {
+    min-width: rem(380px);
+    min-height: rem(395px);
+    background-color: rgba(#000, 0.5);
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px; 
+    overflow: hidden;
+    flex-grow: 1;
+
+    @include screen-sm {
+        min-width: rem(348px);
+    }
+
+    @include screen-xs {
+        min-width: rem(100px);
+        max-width: rem(348px);
+    }
+}
+
+.welcome__button {
+    position: absolute;
+    top: rem(20px);
+    right: rem(80px);
+
+    @include screen-lg {
+        right: rem(20px);
+    }
+
+    @include screen-xs {
+        left: 50%;
+        right: initial;
+        transform: translateX(-50%);
+    }
+}
+
+.welcome__copyright {
+    position: absolute;
+    bottom: rem(45px);
+}

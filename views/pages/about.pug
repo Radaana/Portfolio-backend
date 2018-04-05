@@ -1,4 +1,90 @@
-extends ../main.layout.pug
+extends ../pug/base
 
+block head
+    title Обо мне
 block content
-  h1 Страница обо
+    .maincontent
+        .loader#loader
+            .loader__pic
+                each val in [1, 2, 3, 4, 5]
+                    .loader__circle
+                        .loader__inner
+        section.section.about-me
+            h1.visually-hidden Обо мне, мои навыки и контакты      
+            header.header
+                .header__socials
+                    include ../pug/socials.pug
+                button.btn.header__menu(type="button")
+                    .hamburger-menu#hamburger-menu
+                        .hamburger-menu__bars
+                .section__backing.section__backing--header
+                    svg.svg
+                        use(xlink:href="img/sprite.svg#portfolio_header") 
+                .profile.header__profile
+                    .photo
+                        img.img(src="img/me.jpg" alt="Леонидова Екатерина")
+                    h2.profile__title Леонидова Екатерина
+                    p.profile__text Веб-разработчик   
+                button.btn.arrow.header__arrow(type="button")
+                    svg.svg(width="26" height="16")
+                        use(xlink:href="img/sprite.svg#arrow_down")
+            main.about-me__main    
+                .triangles.about-me__triangles
+                    svg(xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1000 85" preserveaspectratio="none" class="traingle")
+                        polygon(class="triangle__left" points="0,0   0,86   500.8,86   500.8,75.5")
+                        polygon(class="triangle__right" points="1000,0   1000,86   500,86   500,75.5")  
+                section.about-me__content
+                    .about-me__left
+                        .section__title-box.about-me__title
+                            .section__backing.section__backing--subtitle
+                                svg.svg.svg--green
+                                    use(xlink:href="img/sprite.svg#about_header")  
+                            h2.section__title.section__title--dark  Обо мне 
+                        .user.about-me__user
+                            .user__pic
+                                img.img(src="img/me.jpg" alt="Леонидова Екатерина")
+                            h3.section__subtitle Кто я
+                            .user__text.text
+                                p Я веб разработчик из Москвы. Мне 30 лет. Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты, изучать новые подходы и фреймворки, постоянно учиться.
+                                p Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool на продвинутом курсе по веб-разработке. 
+                    .about-me__right
+                        h3.section__subtitle.about-me__subtitle Чем я могу быть вам полезна
+                        .text.about-me__text Больше всего меня привлекает Frontend разработка, но я могу решать несложные задачи на Backend. Ниже список моих навыков: 
+                        ul.skills__list.about-me__skills.skills#skills
+                            skills-list(:items="frontend")
+                            skills-list(:items="backend")
+                            skills-list(:items="workflow")
+            section.about-me__map
+                .map#map
+                .contacts.about-me__contacts
+                    .contacts__title
+                        h2.section__subtitle Контакты
+                    ul.contacts__list
+                        - var contacts = [ ['skype', 'iscazia'], ['envelope', 'leonidovaes@gmail.com'], ['phone', '+7 916 --- -- --'], ['map_marker', 'Москва, м. Проспект Вернадского'] ]
+                        each contact in contacts
+                            li.contacts__row
+                                .contacts__icon
+                                    svg.contacts__svg(width="24" height="24")
+                                        use(xlink:href=`img/sprite.svg#${contact[0]}`)
+                                .contacts__text #{contact[1]}    
+                .about-me__footer
+                    include ../pug/footer.pug
+            .fullscreen
+                +nav(1)
+            
+block script
+    script(type="text/x-template",id="skills-item")
+        li.skills__skill.skill 
+            svg.skill__circle.circle(viewBox="0 0 110 110")
+                circle(r="45" cx="50%" cy="50%" fill="none" class="circle__first")
+                circle(r="45" cx="50%" cy="50%" transform="rotate(-90 55 55)" class="circle__second"  :class="'circle__second--' + skill.level ")
+            .skill__title {{skill.name}}
+    script(type="text/x-template" id="skills-list")
+            li.skills__item
+                h4.skills__title {{items.title}}
+                ul.skills__row
+                    skills-item(v-for="item in items.skills"  :skill="item"  :key="item.id")
+    script(src='scripts/about.bundle.js')
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCdiqpmw5rW0CewRcKKUTZCtx4ePiFkEBA&callback=initMap')             
+    
+    

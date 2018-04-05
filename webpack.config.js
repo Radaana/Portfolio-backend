@@ -3,9 +3,13 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, "src/scripts/main.js"),
+    // main: path.resolve(__dirname, "src/scripts/main.js"),
     admin: path.resolve(__dirname, "src/admin/main.js"),
-    styles: path.resolve(__dirname, "src/styles/index.js")
+    styles: path.resolve(__dirname, "src/styles/index.js"),
+    index : path.resolve(__dirname, "src/scripts/index.js"),
+    blog : path.resolve(__dirname, "src/scripts/blog.js"),
+    works : path.resolve(__dirname, "src/scripts/works.js"),
+    about : path.resolve(__dirname, "src/scripts/about.js")
   },
   output: {
     path: path.resolve(__dirname, "public/scripts"),

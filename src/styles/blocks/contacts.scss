@@ -1,0 +1,35 @@
+.contacts {
+    width: rem(380px);
+    height: rem(312px);
+    background-color: rgba(#fff, 0.8);
+    border-radius: rem(10px); 
+    padding: rem(35px) rem(40px);
+
+    @include screen-sm {
+        width: rem(350px);
+    }
+
+    @include screen-xs {
+        width: 100%;
+    }
+}
+
+.contacts__list {
+    margin-top: rem(15px);
+}
+
+.contacts__row {
+    display: flex;
+    height: rem(45px);
+}
+
+
+.contacts__svg {
+    fill: $lightGreen;
+    width: rem(24px);
+    height: rem(24px);
+}
+
+.contacts__text {
+    margin-left: rem(10px);
+}

@@ -1,0 +1,41 @@
+.flipper {
+    position: relative;
+    perspective: 600px;
+
+    &--flip {
+        .flipper__front {
+            z-index: 900;
+            transform: rotateY(179deg);
+        }
+
+        .flipper__back {
+            z-index: 1000;
+            transform: rotateX(0) rotateY(0);
+        }
+    }
+}
+
+.flipper__front {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 900;
+
+    transform: rotateX(0) rotateY(0);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transition: all .4s ease-in-out;
+}
+
+.flipper__back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 800;
+
+    transform: rotateY(-179deg);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transition: all .4s ease-in-out;
+}
+

@@ -1,0 +1,25 @@
+.link-btn  {
+    padding: rem(12px) rem(16px);
+    background-color: $lightGreen;
+    border-radius: 30px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+  
+    &:hover {
+      background-color: $green;
+    }
+  }
+  
+  .link-btn__icon {
+    width: rem(20px);
+    height: rem(20px);
+    margin-right: rem(10px);
+  }
+  
+  
+  .link-btn__svg {
+    width: 100%;
+    height: 100%;
+    fill: #fff;
+  }

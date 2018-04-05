@@ -18,7 +18,7 @@ const ROOT_PATH = `./${DIST_DIR}`;
 // стили
 gulp.task("styles", () => {
   return gulp
-    .src(`${SRC_DIR}/styles/main.scss`)
+    .src(`${SRC_DIR}/styles/style.scss`)
     .pipe($gp.plumber())
     .pipe($gp.sassGlob())
     .pipe($gp.sourcemaps.init())
@@ -36,7 +36,7 @@ gulp.task("styles", () => {
     )
     .pipe($gp.sourcemaps.write())
     .pipe($gp.rename({ suffix: ".min" }))
-    .pipe(gulp.dest(`${DIST_DIR}/styles/`))
+    .pipe(gulp.dest(`${DIST_DIR}/css/`))
     .pipe(reload({ stream: true }));
 });
 
@@ -53,7 +53,7 @@ gulp.task("clean", () => {
 // собираем скрипты webpack
 gulp.task("scripts", () => {
   return gulp
-    .src(`${SRC_DIR}/scripts/main.js`)
+    .src(`${SRC_DIR}/scripts/*.js`)
     .pipe($gp.plumber())
     .pipe($gp.webpack(webpackConfig, webpack))
     .pipe(gulp.dest(`${DIST_DIR}/scripts`))
@@ -141,7 +141,7 @@ gulp.task("svg", done => {
 gulp.task("images", () => {
   return gulp
     .src([`${SRC_DIR}/images/**/*.*`, `!${SRC_DIR}/images/icons/*.*`])
-    .pipe(gulp.dest(`${DIST_DIR}/images/`));
+    .pipe(gulp.dest(`${DIST_DIR}/img/`));
 });
 
 // галповский вотчер
