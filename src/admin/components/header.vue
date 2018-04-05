@@ -1,7 +1,7 @@
 <template lang="pug">
   .admin-header
     h1.admin-header__title Панель администрирования
-    a.admin-header__link(href="index.html") Вернуться на сайт
+    a.admin-header__link(href="/index") Вернуться на сайт
 </template>
 <script>
 export default {
