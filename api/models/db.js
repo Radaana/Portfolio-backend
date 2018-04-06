@@ -40,3 +40,4 @@ process.on('SIGINT', function() {
 
 require('./blog');
 require('./avatar');
+require('./skills');

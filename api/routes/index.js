@@ -3,11 +3,17 @@ const router = express.Router();
 
 const ctrlBlog = require('../controllers/blog');
 const ctrlAvatar = require('../controllers/avatar');
+const ctrlSkills = require('../controllers/skills');
 
 router.get('/blog', ctrlBlog.getArticles); // READ
 router.post('/blog', ctrlBlog.createArticle); // CREATE
 router.put('/blog/:id', ctrlBlog.editArticle); // EDIT
 router.delete('/blog/:id', ctrlBlog.deleteArticle); // DELETE
+
+router.get('/skills', ctrlSkills.getSkills); // READ
+router.post('/skills', ctrlSkills.createSkills); // CREATE
+router.put('/skills/:id', ctrlSkills.editSkills); // EDIT
+router.delete('/skills/:id', ctrlSkills.deleteSkills); // DELETE
 
 router.get('/avatar', ctrlAvatar.getAvatar);
 router.post('/avatar', ctrlAvatar.setAvatar);

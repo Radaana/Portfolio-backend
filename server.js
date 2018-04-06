@@ -26,9 +26,9 @@ app.use(function(req, res, next) {
     next();
   });
 
-  app.use('/myadmin(.html)?', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'myadmin.html'));
-  });
+  // app.use('/myadmin(.html)?', (req, res) => {
+  //   res.sendFile(path.join(__dirname, 'public', 'myadmin.html'));
+  // });
   app.use('/api', indexApi);
   app.use('/', index);
 
