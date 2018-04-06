@@ -2,7 +2,9 @@
     // width: 30%;
     padding: rem(20px) rem(20px);
 
-   
+    // @include screen-sm {
+    //     padding: 0;
+    // }
 }
 
 .names__list {

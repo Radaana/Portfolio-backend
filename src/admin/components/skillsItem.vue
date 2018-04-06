@@ -1,27 +1,53 @@
 <template lang="pug">
   .admin-group__row
     span.admin-group__name {{skill.name}}
-    input.admin__input.admin-group__input(:value="skill.percents" type="text"  placeholder="50" required)
+    input.admin__input.admin-group__input(v-model="percents" type="text" @keydown.enter="setPersents(skill.id)"  :class="{error : validation.hasError('percents')}")
     span.admin-group__persent %
     button.admin-group__button(type="button" @click="removeExistedSkill(skill.id)") X
-    //- td {{skill.name}}
-    //- td
-    //-   input(type="text" :value="skill.percents")
-    //- td
-    //-   button(type="button" @click="removeExistedSkill(skill.id)") Удалить
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { Validator } from "simple-vue-validator";
+// import { mapMutations } from "vuex";
 export default {
   props: {
     skill: Object
   },
-  methods: {
-    ...mapMutations(['removeSkill']),
-    removeExistedSkill(skillId) {
-      this.removeSkill(skillId);
+  data() {
+    return {
+      percents: this.skill.percents,
     }
+  },
+  mixins: [require("simple-vue-validator").mixin],
+  validators: {
+    percents: value => {
+      return Validator.value(+value).required("Название не может быть пустым").lessThan(100).greaterThan(0);
+    }
+  },
+  methods: {
+    removeExistedSkill(id) {
+      this.axios.delete(`http://localhost:3000/api/skills/${id}`).then(rs => {
+        // this.skills = rs.data.skills;
+        this.$emit('skillDeleted');
+      });
+    },
+    setPersents(id) {
+      let newPercents = +this.percents;
+      this.$validate().then(success => {
+        if (!success) return;
+        let envelope = { percents : newPercents};
+        // this.addSkill(newSkill);
+        this.axios.put(`http://localhost:3000/api/skills/${id}`, envelope).then(rs => {
+          this.validation.reset();
+          console.log(rs.data.status);
+          this.$emit('setPercents');
+        });
+      console.log(newPercents);
+      });
+    // ...mapMutations(['removeSkill']),
+    // removeExistedSkill(skillId) {
+    //   this.removeSkill(skillId);
+    },
   }
 };
 </script>
@@ -54,7 +80,7 @@ export default {
 .admin__input {
     background-color: #fff;
     border-radius: 10px;
-    border: 1px solid $text;
+    // border: 1px solid $text;
     color: $text;
 }
 
@@ -73,10 +99,21 @@ export default {
 .admin-group__button {
   border: 1px solid $text;
   opacity: 0;
-  width:30px;
-  height: 30px;
+  padding: 5px 15px;
+  // width:30px;
+  // height: 30px;
   border-radius: 10px;
   background-color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ff4040;
+  }
 }
+
+// .error {
+//     border: 1px solid red;
+//     outline: none;
+//   }
 </style>
 

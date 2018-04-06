@@ -7,11 +7,12 @@
         :key="skillType"
         :skillType="skillType"
         :skills="skills"
+        @updateList="updateList"
       )
 
 </template>
 <script>
-import { mapActions, mapGetters } from "vuex";
+// import { mapActions, mapGetters } from "vuex";
 import skillsList from "./skillsList";
 export default {
   components: {
@@ -19,17 +20,27 @@ export default {
   },
   data() {
     return {
+      skills: null,
       skillsTypes: ["frontend", "workflow", "backend"]
     };
   },
   computed: {
-    ...mapGetters(['skills'])
+    // ...mapGetters(['skills'])
   },
   methods: {
-    ...mapActions(['fetchSkills'])
+    // ...mapActions(['fetchSkills'])
+    updateList() {
+      this.axios.get(`http://localhost:3000/api/skills`).then(rs => {
+        this.skills = rs.data.skills;
+      });
+    }
   },
   mounted() {
-    this.fetchSkills();
+    // this.fetchSkills();
+    // console.log('akcio');
+    this.axios.get(`http://localhost:3000/api/skills`).then(rs => {
+        this.skills = rs.data.skills;
+      });
   }
 };
 </script>

@@ -30,7 +30,7 @@ export default {
   }
 
   .admin {
-    background-color: rgba(#fff, 0.8);
+    background-color: rgba(#ddd, 0.5);
     width: 100%;
     min-height: 100vh;
   }
@@ -44,7 +44,7 @@ export default {
 .admin__input {
     background-color: #fff;
     border-radius: 10px;
-    border: 1px solid $text;
+    border: none;
     color: $text;
 }
 
@@ -57,7 +57,20 @@ export default {
     max-width: 120px;
 }
 
+.error {
+    border: 1px solid red;
+    outline: none;
+  }
 
+.form__message {
+    font-family: 'robotomedium', sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    transform: translateY(-50%);
+    color: red;
+    // font-weight: bold;
+}
 
 </style>
 

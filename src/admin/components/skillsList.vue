@@ -6,9 +6,12 @@
       v-if="convertSkillStringToNum(skillType) === skill.type"
       :key="skill.id"
       :skill="skill"
+      @skillDeleted="updateList"
+      @setPercents="updateList"
     )
     skill-input(
-      :type="convertSkillStringToNum(skillType)"
+      :type="convertSkillStringToNum(skillType)",
+      @skillAdded="updateList",
     )
 </template>
 <script>
@@ -31,6 +34,9 @@ export default {
         case "backend":
           return 3;
       }
+    },
+    updateList() {
+      this.$emit('updateList');
     }
   }
 };
@@ -42,6 +48,7 @@ export default {
     display: flex;
     flex-direction: column;
     width: 260px;
+    margin-right: 30px;
   }
 
   .admin-main__group {

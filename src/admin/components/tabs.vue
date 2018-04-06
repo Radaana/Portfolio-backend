@@ -1,10 +1,11 @@
 <template lang="pug">
-  .admin-tabs
+  ul.admin-tabs
     //- ul..admin-tabs__list
       //- li.admin-tabs__item
-    button.btn.admin-tabs__tab(v-for="tab in tabs")
+    li.btn.admin-tabs__tab(v-for="tab in tabs")
       router-link( :to="tab.href" ).link {{tab.name}}
 </template>
+
 <script>
 export default {
   data() {
@@ -24,14 +25,13 @@ export default {
     display: flex;
     background-color: #f0efe9;
     width: 100%;
+    padding: 0;
+    margin: 0;
 
 
     @media screen and (max-width: 560px) {
         flex-direction: column;
     }
-    // @include screen-xs {
-    //     flex-direction: column;
-    // }
 }
 
 
@@ -51,6 +51,7 @@ export default {
     
     a {
       width: 100%;
+      text-align: center;
       line-height: 60px;
       display: block;
       text-transform: uppercase;
@@ -71,10 +72,5 @@ export default {
         border-right: none;
         border-bottom: 2px solid #fff;
     }
-    // @include screen-xs {
-    //     width: 100%;
-    //     border-right: none;
-    //     border-bottom: 2px solid #fff;
-    // }
 }
 </style>

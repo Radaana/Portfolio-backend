@@ -49,19 +49,20 @@ module.exports.createSkills = function (req, res) {
 };
 
 module.exports.editSkills = function (req, res) {
-  const id = req.params.id;
-
-  let data = {
-    id: req.body.id,
-    name: req.body.name,
-    percents: req.body.percents,
-    type: req.body.type,
-  };
+  const thisId = req.params.id;
+  const newPercent = req.body.percents;
+  console.log(`Я принял ${newPercent}`);
+  // let data = {
+  //   id: req.body.id,
+  //   name: req.body.name,
+  //   percents: req.body.percents,
+  //   type: req.body.type,
+  // };
 
   const Model = mongoose.model('skills');
 
   Model
-    .findByIdAndUpdate(id, {$set: data})
+    .findOneAndUpdate({id : thisId }, {percents: newPercent})
     .then((item) => {
       if (item) {
         res
@@ -83,11 +84,13 @@ module.exports.editSkills = function (req, res) {
 };
 
 module.exports.deleteSkills = function (req, res) {
-  const id = req.params.id;
+  const thisId = req.params.id;
   const Model = mongoose.model('skills');
+  console.log(thisId);
 
   Model
-    .findByIdAndRemove(id)
+    // .findByIdAndRemove(id)
+    .findOneAndRemove({id : thisId })
     .then((item) => {
       if (item) {
         res.status(200).json({status: 'Запись успешно удалена'});

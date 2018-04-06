@@ -18,13 +18,17 @@ const skills = {
   actions: {
     fetchSkills({ state }) {
       console.log('storage');
-      fetch("scripts/data.json")
-        .then(data => {
-          return data.json();
-        })
-        .then(responce => {
-          state.data = responce
-        });
+      // fetch("scripts/data.json")
+      //   .then(data => {
+      //     return data.json();
+      //   })
+      //   .then(responce => {
+      //     state.data = responce
+      //   });
+      this.axios.get(`http://localhost:3000/api/skills`).then(rs => {
+        state.data = rs.data.skills;
+        console.log(rs.data.skills);
+      });
     }
   }
 };

@@ -20,7 +20,7 @@
         // clip: rect(0 0 0 0);
         // height: 100%;
         width: 1px;
-        margin: -1px;
+        margin: -41px;
         background-color:$lightGreen;
         padding: 0;
         border: 0;
@@ -28,6 +28,8 @@
 }
 
 .contents__left--shown {
+    
+
     @include screen-sm {
         position: fixed;
         top: 35%;
@@ -44,6 +46,10 @@
         border-top-right-radius: 50px;
         border-bottom-right-radius: 50px;
         color: #000;
+
+        .names {
+            padding: rem(20px) rem(20px);
+        }
     }
 
     @include screen-xs {
