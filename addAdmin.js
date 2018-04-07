@@ -4,7 +4,7 @@ const rl = readline.createInterface({input: process.stdin, output: process.stdou
 const config = require('./config/config');
 mongoose.Promise = global.Promise;
 mongoose
-  .connect(`mongodb://${config.db.host}:${config.db.port}/${config.db.name}`)
+  .connect(`mongodb://${config.db.user}:${config.db.password}@${config.db.host}:${config.db.port}/${config.db.name}`)
   .catch(e => {
     console.error(e);
     throw e;

@@ -7,13 +7,22 @@ const ctrlWorks = require('../controllers/works');
 const ctrlAbout = require('../controllers/about');
 const ctrlAdmin = require('../controllers/admin');
 
+var isAuthenticated = function(req, res, next) {
+    if (req.isAuthenticated()) {
+      return next();
+    }
+    res.redirect('/');
+  };
+  
+
+
 router.get('/', ctrlHome.index);
 router.get('/index', ctrlHome.index);
-// router.post('/login', ctrlHome.auth);
+router.post('/index', ctrlHome.auth);
 
 router.get('/about', ctrlAbout.about);
 
-router.get('/admin', ctrlAdmin.admin);
+router.get('/admin', isAuthenticated, ctrlAdmin.admin);
 
 router.get('/blog', ctrlBlog.blog);
 

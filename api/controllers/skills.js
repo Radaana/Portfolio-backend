@@ -51,14 +51,6 @@ module.exports.createSkills = function (req, res) {
 module.exports.editSkills = function (req, res) {
   const thisId = req.params.id;
   const newPercent = req.body.percents;
-  console.log(`Я принял ${newPercent}`);
-  // let data = {
-  //   id: req.body.id,
-  //   name: req.body.name,
-  //   percents: req.body.percents,
-  //   type: req.body.type,
-  // };
-
   const Model = mongoose.model('skills');
 
   Model
@@ -86,7 +78,6 @@ module.exports.editSkills = function (req, res) {
 module.exports.deleteSkills = function (req, res) {
   const thisId = req.params.id;
   const Model = mongoose.model('skills');
-  console.log(thisId);
 
   Model
     // .findByIdAndRemove(id)

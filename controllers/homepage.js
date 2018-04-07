@@ -10,15 +10,15 @@ module.exports.index = function (req, res) {
   res.render('pages/index', Object.assign({}, sendObj));
 }
 
-module.exports.login = function (req, res) {
-  if (req.isAuthenticated()) {
-    return res.redirect('/admin');
-  }
-  res.render('pages/login', {
-    title: 'Авторизация',
-    msg: req.flash('message')
-  });
-}
+// module.exports.login = function (req, res) {
+//   if (req.isAuthenticated()) {
+//     return res.redirect('/admin');
+//   }
+//   res.render('/index', {
+//     title: 'Авторизация',
+//     msg: req.flash('message')
+//   });
+// }
 
 module.exports.auth = function (req, res, next) {
   passport.authenticate('loginUsers', (err, user) => {
@@ -27,7 +27,7 @@ module.exports.auth = function (req, res, next) {
     }
     if (!user) {
       req.flash('message', ' укажите правильный логин и пароль!');
-      return res.redirect('/login');
+      return res.redirect('/index');
     }
     req.logIn(user, function(err) {
       if (err) {

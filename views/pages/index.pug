@@ -22,9 +22,43 @@ block content
                         p.profile__text Веб-разработчик
                         include ../pug/socials.pug
                     +nav(0)
-                .auth.flipper__back#auth-container
+                //- .auth.flipper__back#auth-container
+                .auth.flipper__back
                     h2.section__subtitle.section__subtitle--white.auth__title Авторизация
-                    auth-form     
+                    //- auth-form 
+                    form.auth__form.form.form--contact(action="/index" method="POST")
+                        .form__input
+                            //- .form__message {{ validation.firstError('login') }}
+                            span.form__pic
+                                svg.form__svg(width="17" height="17")
+                                    use(xlink:href="img/sprite.svg#login")
+                            label.visually-hidden(for="login") Логин
+                            input.input.input--half-round( type="text" name="login" placeholder="Логин" id="login" required) 
+                        .form__input
+                            span.form__pic
+                                svg.form__svg(width="17" height="17")
+                                    use(xlink:href="img/sprite.svg#password")
+                            label.visually-hidden(for="password") Пароль
+                            input.input.input--half-round( type="password" name="password" placeholder="Пароль" id="password" required)  
+                        .form__group
+                            label.form__checkbox
+                                input.form__hidden(v-model="human" type="checkbox" id="human" name="human" value="1")
+                                span.form__switch.form__switch--checkbox 
+                                span.form__label Я человек 
+                        .form__group.form__group--last
+                            span.form__text А вы точно не робот?
+                            .form__radios
+                                label.form__radio
+                                    input.form__hidden(type="radio" name="isSure" value="1" )
+                                    span.form__switch.form__switch--radio
+                                    span.form__label.form__label--green  Да
+                                label.form__radio 
+                                    input.form__hidden( type="radio" name="isSure" value="0" checked)
+                                    span.form__switch.form__switch--radio
+                                    span.form__label.form__label--green  Не уверен
+                        .form__buttons
+                            button.btn.form__btn(type="reset" id="to-main" title="Главная" ) На главную
+                            button.btn.form__btn(type="submit" ) Войти    
             .copyright.welcome__copyright
                 span.copyright__name © Екатерина Леонидова  
                 span.copyright__place создано с любовью в LoftSchool | 2018 
@@ -68,7 +102,7 @@ block script
                         span.form__label.form__label--green  Не уверен
             .form__buttons
                 button.btn.form__btn(@click.prevent="reset" id="to-main" title="Главная" type="button") На главную
-                button.btn.form__btn(@click.prevent="submit" type="button") Войти       
+                button.btn.form__btn(@click.prevent="submit" type="button" ) Войти       
     script(src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenLite.min.js")
     script(src="//threejs.org/build/three.min.js")
     //- script.

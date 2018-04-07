@@ -9,6 +9,16 @@ var SimpleVueValidation = require('simple-vue-validator');
 var Validator = SimpleVueValidation.Validator;
 Vue.use(SimpleVueValidation);
 
+// import axios from 'axios'
+// import VueAxios from 'vue-axios'
+
+let axios = require ('axios');
+let VueAxios = require ('vue-axios');
+
+Vue.use(VueAxios, axios);
+
+
+
 loader.init();
 
 let container = document.getElementById('container');
@@ -21,7 +31,7 @@ if(  width < 769 ) {
 };
 if (!mobile) {
   webgl.init();
-  console.log('webgl init');
+  // console.log('webgl init');
 } ;
 
 
@@ -30,7 +40,7 @@ window.onresize = function () {
   console.log(width);
   if(  width < 769 ) {
     mobile = true;
-    console.log('mobile' + mobile + '   ' + navigator.userAgent);
+    // console.log('mobile' + mobile + '   ' + navigator.userAgent);
   };
   
 };
@@ -60,11 +70,28 @@ Vue.component("auth-form", {
   },
   methods: {
       submit: function () {
-          console.log( this.$validate() );
           this.$validate()
             .then(function (success) {
               if (success) {
-                console.log('Validation succeeded!');
+                console.log('Tada');
+                // console.log(axios);
+                 axios({
+                    method: 'post',
+                    url: 'http://localhost:3000/index',
+                    data: {
+                      login: this.login,
+                      password: this.password,
+                    }
+                }).then(rs => {
+                    // this.msgblog = rs.data.status;
+                    this.login = '';
+                    this.password = '';
+                    this.validation.reset();
+                    console.log('tada')
+                })
+                    .catch(function (error) {
+                      console.log(error);
+                });
               }
             });
       }, 

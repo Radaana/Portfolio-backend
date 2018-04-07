@@ -35,7 +35,7 @@ export default {
       });
     }
   },
-  mounted() {
+  mounted() { 
     // this.fetchSkills();
     // console.log('akcio');
     this.axios.get(`http://localhost:3000/api/skills`).then(rs => {

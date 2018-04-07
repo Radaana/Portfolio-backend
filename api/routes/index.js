@@ -4,6 +4,17 @@ const router = express.Router();
 const ctrlBlog = require('../controllers/blog');
 const ctrlAvatar = require('../controllers/avatar');
 const ctrlSkills = require('../controllers/skills');
+// const ctrlAdmin = require('../controllers/admin');
+
+
+// var isAuthenticated = function(req, res, next) {
+//   if (req.isAuthenticated()) {
+//     return next();
+//   }
+//   res.redirect('/');
+// };
+
+
 
 router.get('/blog', ctrlBlog.getArticles); // READ
 router.post('/blog', ctrlBlog.createArticle); // CREATE
@@ -15,8 +26,11 @@ router.post('/skills', ctrlSkills.createSkills); // CREATE
 router.put('/skills/:id', ctrlSkills.editSkills); // EDIT
 router.delete('/skills/:id', ctrlSkills.deleteSkills); // DELETE
 
-router.get('/avatar', ctrlAvatar.getAvatar);
-router.post('/avatar', ctrlAvatar.setAvatar);
+// router.get('/admin', isAuthenticated, ctrlAdmin.admin);
+// router.post('/admin/avatar', isAuthenticated, ctrlAdmin.uploadAvatar);
+
+// router.get('/avatar', ctrlAvatar.getAvatar);
+// router.post('/avatar', ctrlAvatar.setAvatar);
 
 router.get('*', (req, res) => {
   res.status(404).json({msg: 'Not found', err: 404});
