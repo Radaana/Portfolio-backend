@@ -1,4 +1,10 @@
 {
+  "server": {
+    "path": "http://localhost:3000",
+    "blog": "/api/blog",
+    "avatar": "/api/avatar",
+    "skills": "/api/skills"
+  },
   "db": {
     "host": "ds137019.mlab.com",
     "port": "37019",
@@ -19,3 +25,4 @@
     }
   }
 }
+

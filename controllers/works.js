@@ -9,7 +9,8 @@ module.exports.sendEmail = function(req, res) {
   // требуем наличия имени, обратной почты и текста
   if (!req.body.name || !req.body.email || !req.body.text) {
     //если что-либо не указано - сообщаем об этом
-    return res.redirect('/?msg=Все поля нужно заполнить!');
+    req.flash('message', 'Все поля нужно заполнить!')
+    return res.redirect('/');
   }
   // инициализируем модуль для отправки писем и указываем данные из конфига
   const transporter = nodemailer.createTransport(config.mail.smtp);
@@ -27,8 +28,10 @@ module.exports.sendEmail = function(req, res) {
   transporter.sendMail(mailOptions, function (error, info) {
     //если есть ошибки при отправке - сообщаем об этом
     if (error) {
-      return res.redirect('/?msg=При отправке письма произошла ошибка: ' + error);
+      req.flash('message', 'При отправке письма произошла ошибка: ' + error)
+      return res.redirect('/');
     }
-    res.redirect('/?msg=Письмо успешно отправлено');
+    req.flash('message', 'Письмо успешно отправлено')
+    res.redirect('/');
   });
 }
