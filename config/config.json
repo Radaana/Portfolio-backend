@@ -11,18 +11,6 @@
     "name": "portfolio",
     "user": "root",
     "password": "12345"
-  },
-  "mail": {
-    "subject": "Сообщение с сайта",
-    "smtp": {
-      "host": "smtp.gmail.com",
-      "port": 465,
-      "secure": true,
-      "auth": {
-        "user": "web***@gmail.com",
-        "pass": "mai***2018"
-      }
-    }
   }
 }
 

@@ -21,6 +21,11 @@ module.exports.admin = function (req, res) {
   
 }
 
+module.exports.image = function (req, res) { //Костыль, чтобы точно отдал файл
+  res.writeHead(200, {'Content-Type': 'image/jpeg'}); 
+  fs.createReadStream(path.join(__dirname, '../public/img/welcome-bg.jpg')).pipe(res);
+
+} 
 
 module.exports.upload = function (req, res) {
   console.log('Controller upload');

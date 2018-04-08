@@ -9,15 +9,10 @@ var SimpleVueValidation = require('simple-vue-validator');
 var Validator = SimpleVueValidation.Validator;
 Vue.use(SimpleVueValidation);
 
-// import axios from 'axios'
-// import VueAxios from 'vue-axios'
-
 let axios = require ('axios');
 let VueAxios = require ('vue-axios');
 
 Vue.use(VueAxios, axios);
-
-
 
 loader.init();
 
@@ -27,34 +22,23 @@ let mobile = false;
 
 if(  width < 769 ) {
   mobile = true;
-  console.log('mobile' + mobile + '   ' + navigator.userAgent);
 };
 if (!mobile) {
   webgl.init();
-  // console.log('webgl init');
 } ;
-
-
 window.onresize = function () {
   width = container.offsetWidth;
-  console.log(width);
   if(  width < 769 ) {
     mobile = true;
-    // console.log('mobile' + mobile + '   ' + navigator.userAgent);
   };
-  
 };
-
-// if (!mobile) {
-//     webgl.init();
-//     console.log('webgl init');
-//   } ;
-
 
 const errorMessages = {
   required : "Не заполнено",
   notHuman: "Вход только для людей",
 };
+
+var global = false;
 
 Vue.component("auth-form", {
   
@@ -66,34 +50,33 @@ Vue.component("auth-form", {
       password: '',
       human: false,
       isSure: 0,
+      data: null,
+      validate: false,
     }
   },
   methods: {
       submit: function () {
           this.$validate()
-            .then(function (success) {
-              if (success) {
-                console.log('Tada');
-                // console.log(axios);
-                 axios({
-                    method: 'post',
-                    url: 'http://localhost:3000/index',
-                    data: {
-                      login: this.login,
-                      password: this.password,
-                    }
-                }).then(rs => {
-                    // this.msgblog = rs.data.status;
+            .then((success) => {
+              if (!success) return;
+              console.log('Validation succeeded');
+              global = true;
+              console.log(`Global - ${global}`);
+              if (global) {
+                console.log('Sending data');
+                this.data = {
+                    login: this.login,
+                    password: this.password,
+                  };
+                axios.post('http://localhost:3000/index', this.data).then(rs => { //авторизация
+                    let msgblog = rs.data.status;
                     this.login = '';
                     this.password = '';
-                    this.validation.reset();
-                    console.log('tada')
-                })
-                    .catch(function (error) {
-                      console.log(error);
+                    this.validation.reset(); 
+                    window.location.href = "http://localhost:3000/admin"; //редирект
                 });
               }
-            });
+            });   
       }, 
       reset: function() {
         this.validation.reset();

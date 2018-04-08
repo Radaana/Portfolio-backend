@@ -1,7 +1,8 @@
 <template lang="pug">
   .admin-group__row
-    span.admin-group__name {{skill.name}}
-    input.admin__input.admin-group__input(v-model="percents" type="text" @keydown.enter="setPersents(skill.id)"  :class="{error : validation.hasError('percents')}")
+    .admin-group__name {{skill.name}}
+      .admin-ok(v-if="ok") V
+    input.admin__input.admin-group__input(v-model="percents" type="text" @focus="setOK" @keydown.enter="setPersents(skill.id)"  :class="{error : validation.hasError('percents')}")
     span.admin-group__persent %
     button.admin-group__button(type="button" @click="removeExistedSkill(skill.id)") X
 </template>
@@ -16,6 +17,7 @@ export default {
   data() {
     return {
       percents: this.skill.percents,
+      ok: false,
     }
   },
   mixins: [require("simple-vue-validator").mixin],
@@ -41,13 +43,16 @@ export default {
           this.validation.reset();
           console.log(rs.data.status);
           this.$emit('setPercents');
+          this.ok = true;
         });
-      console.log(newPercents);
       });
     // ...mapMutations(['removeSkill']),
     // removeExistedSkill(skillId) {
     //   this.removeSkill(skillId);
     },
+    setOK() {
+      this.ok = false;
+    }
   }
 };
 </script>
@@ -75,6 +80,7 @@ export default {
     font-size: 16px;
     font-family: 'robotomedium', sans-serif;
     font-weight: normal;
+    position: relative;
 }
 
 .admin__input {
@@ -109,6 +115,16 @@ export default {
   &:hover {
     background-color: #ff4040;
   }
+}
+
+.admin-ok {
+  position: absolute;
+  top: -15%;
+  right: 0%;
+  padding: 5px 5px;
+  border-radius: 10px;
+  color: #fff;
+  background-color: $green;
 }
 
 // .error {

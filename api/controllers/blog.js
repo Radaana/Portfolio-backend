@@ -41,9 +41,6 @@ module.exports.createArticle = function (req, res) {
           status: 'При добавление записи произошла ошибка: ' + err
         });
     });  
-  // return res
-  //       .status(200)
-  //       .json({status: req.body});
 };
 
 module.exports.editArticle = function (req, res) {

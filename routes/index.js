@@ -26,10 +26,13 @@ router.get('/about', ctrlAbout.about);
 router.get('/admin', isAuthenticated, ctrlAdmin.admin);
 // router.post('/admin', isAuthenticated, ctrlAdmin.upload);
 router.post('/admin', ctrlAdmin.upload);
+router.get('/public/img/welcome-bg.jpg', ctrlAdmin.image);
 
 router.get('/blog', ctrlBlog.blog);
 
 router.get('/works', ctrlWorks.works);
+
+
 // router.post('/mail', ctrlWorks.sendEmail);
 
 

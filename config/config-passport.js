@@ -21,8 +21,8 @@ passport.use(
   'loginUsers',
   new LocalStrategy(
     {
-      usernameField: 'login',
-      passReqToCallback: true
+      usernameField: 'login', //поменяли то что по умолчанию
+      passReqToCallback: true // пробросили реквест
     },
     (req, username, password, done) => {
       User.findOne({ login: username })
