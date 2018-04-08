@@ -39,6 +39,6 @@ process.on('SIGINT', function() {
 });
 
 require('../api/models/blog');
-require('../api/models/avatar');
+require('../api/models/works');
 require('../api/models/skills');
 require('../models/user');

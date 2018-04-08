@@ -7,6 +7,8 @@ import Page from './components/page.vue';
 import Blog from './components/blog.vue';
 import Works from './components/works.vue';
 
+// Роутинг админки
+
 const routes = [
   {
     path: '/',

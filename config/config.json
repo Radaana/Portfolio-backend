@@ -2,7 +2,7 @@
   "server": {
     "path": "http://localhost:3000",
     "blog": "/api/blog",
-    "avatar": "/api/avatar",
+    "works": "/api/works",
     "skills": "/api/skills"
   },
   "db": {

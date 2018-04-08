@@ -18,7 +18,6 @@ import moment from 'moment';
 import { Validator } from "simple-vue-validator";
 export default {
     props : {
-    
     },
     data: () => {
         return {
@@ -37,33 +36,29 @@ export default {
         text: value => {
             return Validator.value(value).required("Содержание не может быть пустым");
         },
-        // title: value => {
-        //     return Validator.value(value).required("Название не может быть пустым");
-        // },
     },  
-  methods: {
-    sendArticle: function() {
-        // console.log(this.title, this.date, this.text);
-        this.$validate().then(success => {
-            if (!success) return;
-            this.axios({
-                method: 'post',
-                url: 'http://localhost:3000/api/blog',
-                data: {
-                title: this.title,
-                date: this.date,
-                text: this.text
-                }
-            }).then(rs => {
-                this.msgblog = rs.data.status;
-                this.title = '';
-                this.text = '';
-                this.validation.reset();
-            });
-        });    
-      
-    }
-  }
+    methods: {
+        sendArticle: function() {
+            // console.log(this.title, this.date, this.text);
+            this.$validate().then(success => {
+                if (!success) return;
+                this.axios({
+                    method: 'post',
+                    url: 'http://localhost:3000/api/blog',
+                    data: {
+                    title: this.title,
+                    date: this.date,
+                    text: this.text
+                    }
+                }).then(rs => {
+                    this.msgblog = rs.data.status;
+                    this.title = '';
+                    this.text = '';
+                    this.validation.reset();
+                });
+            });    
+        }
+    } // methods
 };
 </script>
 

@@ -85,7 +85,7 @@ block script
             .form__group
                 .form__checkFailed {{ validation.firstError('human') }}
                 label.form__checkbox
-                    input.form__hidden(v-model="human" type="checkbox" id="human" name="human" value="1")
+                    input.form__hidden(v-model="human" type="checkbox" id="human" name="human" value="1" required)
                     span.form__switch.form__switch--checkbox 
                     span.form__label Я человек 
             .form__group.form__group--last

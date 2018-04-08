@@ -10,16 +10,6 @@ module.exports.index = function (req, res) {
   res.render('pages/index', Object.assign({}, sendObj));
 }
 
-// module.exports.login = function (req, res) {
-//   if (req.isAuthenticated()) {
-//     return res.redirect('/admin');
-//   }
-//   res.render('/index', {
-//     title: 'Авторизация',
-//     msg: req.flash('message')
-//   });
-// }
-
 module.exports.auth = function (req, res, next) {
   passport.authenticate('loginUsers', (err, user) => {
     if (err) {

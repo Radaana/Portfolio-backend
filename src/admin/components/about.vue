@@ -48,7 +48,6 @@ export default {
 <style lang="scss" >
   .admin-main {
       padding: 30px 30px;
-      
     }
 
   .admin-main__title {
@@ -68,11 +67,5 @@ export default {
         flex-direction: column;
         flex-wrap: nowrap;
     }
-
-    // @include screen-sm {
-    //     width: 100%;
-    //     flex-direction: column;
-    //     flex-wrap: nowrap;
-    // }
 }
 </style>
