@@ -31,6 +31,7 @@ router.get('/public/img/welcome-bg.jpg', ctrlAdmin.image);
 router.get('/blog', ctrlBlog.blog);
 
 router.get('/works', ctrlWorks.works);
+router.post('/works', ctrlWorks.email);
 
 
 // router.post('/mail', ctrlWorks.sendEmail);

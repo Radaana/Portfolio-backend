@@ -10,6 +10,10 @@ var SimpleVueValidation = require('simple-vue-validator');
 var Validator = SimpleVueValidation.Validator;
 Vue.use(SimpleVueValidation);
 
+let axios = require ('axios');
+let VueAxios = require ('vue-axios');
+
+Vue.use(VueAxios, axios);
 
 ham.init();
 
@@ -153,16 +157,28 @@ window.onresize = function () {
         name : '',
         email: '',
         comment: '',
+        data: null,
       }
     },
     methods: {
         submit: function () {
             // console.log( this.$validate() );
             this.$validate()
-              .then(function (success) {
-                if (success) {
-                  console.log('Validation succeeded!');
-                }
+              .then((success) => {
+                if (!success) {return}
+                console.log('Validation succeeded!');
+                this.data = {
+                    name: this.name,
+                    email: this.email,
+                    comment: this.comment,
+                  };
+                axios.post('http://localhost:3000/works', this.data).then(rs => { //авторизация
+                    this.name = '';
+                    this.email = '';
+                    this.comment = '';
+
+                    this.validation.reset(); 
+                });
               });
         }
     },
