@@ -1,0 +1,27 @@
+.copyright {
+    
+    color: #fff;
+    display: block;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
+    @include screen-sm { 
+        flex-direction: column;
+    }
+
+    &--footer {
+        background-color: rgba(#6c9c5a, 0.8);
+        font-family: 'robotolight', sans-serif;
+        height: rem(35px);
+        line-height: rem(35px);
+        
+        @include screen-sm {
+            height: rem(66px);
+        }
+    }
+}
+
+.copyright__name {
+    margin-right: 10px;
+}

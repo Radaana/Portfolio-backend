@@ -1,0 +1,17 @@
+.blog-btn {
+    display: none;
+
+    @include screen-sm {
+        position: fixed;
+        z-index: 20;
+        display: block;
+        padding: 0;
+        top: 35%;
+        left: 0px;
+        height: 60px;
+        width: 15px;
+        background-color: $green;
+        border-top-right-radius: 280px;
+        border-bottom-right-radius: 280px;
+    }
+}

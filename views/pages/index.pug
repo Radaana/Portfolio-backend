@@ -1,8 +1,148 @@
-extends ../main.layout.pug
+extends ../pug/base
 
-block variables
-  - var title = 'Главная страница'
-
+block head
+    title Сайт-портфолио
 block content
-  h1 Главная страница
-  .block
+    .maincontent
+        .loader#loader
+            .loader__pic
+                each val in [1, 2, 3, 4, 5]
+                    .loader__circle
+                        .loader__inner
+        section.section.welcome
+            .welcome__webgl#container
+            h1.visually-hidden Личный сайт разработчика Леонидовой Екатерины  
+            button.btn.welcome-btn.welcome__button(title="Авторизация" id="auth" type="button") Авторизоваться
+            .welcome__flipper.flipper
+                .welcome__inner.flipper__front
+                    .profile.header__profile
+                        .photo
+                            img.img(src="img/me.jpg" alt="Леонидова Екатерина")
+                        h2.profile__title Леонидова Екатерина
+                        p.profile__text Веб-разработчик
+                        include ../pug/socials.pug
+                    +nav(0)
+                //- .auth.flipper__back
+                .auth.flipper__back#auth-container
+                    h2.section__subtitle.section__subtitle--white.auth__title Авторизация
+                    auth-form 
+            .copyright.welcome__copyright
+                span.copyright__name © Екатерина Леонидова  
+                span.copyright__place создано с любовью в LoftSchool | 2018           
+block script
+    script(type="text/x-template",id="auth-form")
+        form.auth__form.form.form--contact(action="")
+            .form__input
+                .form__message {{ validation.firstError('login') }}
+                span.form__pic( :class="{error: validation.hasError('login')}")
+                    svg.form__svg(width="17" height="17")
+                        use(xlink:href="img/sprite.svg#login")
+                label.visually-hidden(for="login") Логин
+                input.input.input--half-round(v-model="login"  :class="{error: validation.hasError('login')}" type="text" name="login" placeholder="Логин" id="login" required) 
+            .form__input
+                .form__message {{ validation.firstError('password') }}
+                span.form__pic( :class="{error: validation.hasError('password')}")
+                    svg.form__svg(width="17" height="17")
+                        use(xlink:href="img/sprite.svg#password")
+                label.visually-hidden(for="password") Пароль
+                input.input.input--half-round(v-model="password"  :class="{error: validation.hasError('password')}" type="password" name="password" placeholder="Пароль" id="password" required)  
+            .form__group
+                .form__checkFailed {{ validation.firstError('human') }}
+                label.form__checkbox
+                    input.form__hidden(v-model="human" type="checkbox" id="human" name="human" value="1" required)
+                    span.form__switch.form__switch--checkbox 
+                    span.form__label Я человек 
+            .form__group.form__group--last
+                .form__checkFailed.form__checkFailed--last {{ validation.firstError('isSure') }}
+                span.form__text А вы точно не робот?
+                .form__radios
+                    label.form__radio
+                        input.form__hidden(v-model="isSure" type="radio" name="isSure" value="1" )
+                        span.form__switch.form__switch--radio
+                        span.form__label.form__label--green  Да
+                    label.form__radio 
+                        input.form__hidden(v-model="isSure" type="radio" name="isSure" value="0" checked)
+                        span.form__switch.form__switch--radio
+                        span.form__label.form__label--green  Не уверен
+            .form__buttons
+                button.btn.form__btn(@click.prevent="reset" id="to-main" title="Главная" type="button") На главную
+                button.btn.form__btn(@click.prevent="submit" type="button" ) Войти       
+    script(src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenLite.min.js")
+    script(src="//threejs.org/build/three.min.js")
+    //- script.
+    //-     window.THREE || document.write('<script src="js/three.min.js"></script>')
+    script(id="vertexShader" type="x-shader/x-vertex")
+        .
+            varying vec2 v_position;
+            uniform vec2 u_size;
+            uniform vec2 u_resolution;
+            attribute vec2 a_pos;
+            void main() {
+                    v_position = (position.xy+1.0)*0.5;
+                    gl_Position =  vec4(position, 1.0);            
+            }
+    script(id="fragmentShader" type="x-shader/x-fragment")
+        .
+            uniform float u_time;
+            varying vec2 v_position;
+            uniform sampler2D u_image;
+            uniform sampler2D u_maps;
+            uniform vec2 u_mouse;
+            uniform float u_dpi;
+            uniform vec2 u_resolution;
+            vec2 pos(){
+            return vec2(0.0,0.0);
+            } 
+            vec4 blend(vec4 bg,vec4 fg){
+            vec3 bgm=bg.rgb*bg.a;
+            vec3 fgm=fg.rgb*fg.a;
+            float ia=1.0-fg.a;
+            float a=(fg.a + bg.a * ia);
+            vec3 rgb;
+            if(a!=0.0){
+                rgb=(fgm + bgm * ia) / a;
+            }else{
+                rgb=vec3(0.0,0.0,0.0);
+            }
+            return vec4(rgb,a);
+            }
+            vec2 pixel(){
+            return vec2(1.0*1.0)/u_resolution;
+            }
+            float wave(float x,float freq, float speed){
+            return sin(x*freq+((u_time*(3.1415/2.0))*speed));
+            }
+            vec2 waves(vec2 pos){
+            vec4 maps=texture2D(u_maps,pos);
+            float mask=maps.r;
+            float y=maps.g;
+            float y2=pow(y,2.0);
+            
+            vec2 intensity=vec2(
+                0.5-(y2*0.5),
+                0.2+(y2*1.8)
+            )*pixel();
+            
+            vec2 waves=vec2(
+                wave(y,400.0-(y2*200.0),-0.03), 
+                wave(y,400.0-(y2*400.0*0.05),-0.045)
+                +wave(y,900.0-(y2*900.0*0.05),-0.05)
+                +wave(pos.x,20.0+(y2*20.0*1.5),-0.01)
+            );
+            return pos+(waves*intensity*mask);
+            }
+            vec2 depth(vec2 pos){
+            vec2 intensity=vec2(0.01,0.01);
+            float d=0.05-pow(texture2D(u_maps,pos).b,1.0);
+            return pos+(intensity*u_mouse*d);
+            }
+
+            void main(){
+                vec2 pos=v_position.xy;    
+                vec2 turbulence=depth(waves(pos));
+                vec2 noTurbulence=depth(pos);
+                vec4 c=texture2D(u_image,turbulence);
+
+                gl_FragColor=vec4(c.rgb,1.0);
+            }
+    script(src='scripts/index.bundle.js')

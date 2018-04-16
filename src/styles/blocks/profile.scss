@@ -1,0 +1,20 @@
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: rem(20px) rem(25px) 0;
+    
+    color: #fff;
+}
+
+.profile__title  {
+    font-family: 'robotomedium' , sans-serif;
+    font-size: rem(28px);
+    font-weight: 500;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    text-transform: none;
+    text-align: center;
+}

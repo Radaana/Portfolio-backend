@@ -3,9 +3,13 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, "src/scripts/main.js"),
+    // main: path.resolve(__dirname, "src/scripts/main.js"),
     admin: path.resolve(__dirname, "src/admin/main.js"),
-    styles: path.resolve(__dirname, "src/styles/index.js")
+    styles: path.resolve(__dirname, "src/styles/index.js"),
+    index : path.resolve(__dirname, "src/scripts/index.js"),
+    blog : path.resolve(__dirname, "src/scripts/blog.js"),
+    works : path.resolve(__dirname, "src/scripts/works.js"),
+    about : path.resolve(__dirname, "src/scripts/about.js")
   },
   output: {
     path: path.resolve(__dirname, "public/scripts"),
@@ -44,8 +48,8 @@ module.exports = {
                       loader: "sass-resources-loader",
                       options: {
                         resources: [
-                          "./src/styles/variables.scss",
-                          "./src/styles/mixins.scss"
+                          "./src/styles/layout/variables.scss",
+                          "./src/styles/layout/mixins.scss"
                         ]
                       }
                     }
@@ -68,7 +72,8 @@ module.exports = {
         test: /\.(png|jpg|gif)$/,
         loader: "file-loader",
         options: {
-          name: "[name].[ext]?[hash]"
+          // name: "images/[name].[ext]?[hash]"
+          name: "img/[name].[ext]"
         }
       },
       {
@@ -86,7 +91,7 @@ module.exports = {
     alias: {
       vue$: "vue/dist/vue.esm.js",
       styles: path.resolve(__dirname, "src/styles/components/"),
-      images: path.resolve(__dirname, "src/assets/img/")
+      images: path.resolve(__dirname, "src/images")
     },
     extensions: ["*", ".js", ".vue", ".json"]
   },

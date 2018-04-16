@@ -1,0 +1,31 @@
+{
+  "server": {
+    "path": "http://localhost:3000",
+    "blog": "/api/blog",
+    "works": "/api/works",
+    "skills": "/api/skills"
+  },
+  "db": {
+    "host": "ds137019.mlab.com",
+    "port": "37019",
+    "name": "portfolio",
+    "user": "root",
+    "password": "12345"
+  },
+  "mail": {
+    "subject": "Сообщение с сайта",
+    "smtp": {
+      "host": "smtp.gmail.com",
+      "port": 465,
+      "secure": true,
+      "tls":{
+          "rejectUnauthorized": false
+      },
+      "auth": {
+        "user": "20portfolio18@gmail.com",
+        "pass": "20test18"
+      }
+    }
+  }
+}
+

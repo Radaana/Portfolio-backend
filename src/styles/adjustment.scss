@@ -1,0 +1,67 @@
+.maincontent {
+    height: 100%;
+    min-height: 500px;
+    width: 100%;
+}
+
+
+.visually-hidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+
+.svg {
+    width: 100%;
+    height: 100%;
+    fill:white;
+
+    &--green {
+        fill: $green;
+    }
+}
+
+h1 {
+    font-family: 'robotomedium', sans-serif;
+    color: #fff;
+    font-size: rem(28px);
+}
+
+h2 {
+    @include sansus;
+    font-size: 63px;
+    color:  $dark;
+    text-transform: uppercase;
+}
+
+h3 {
+    @include sansus;
+    font-size: 35px;
+    color: $gray;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+h4 {
+    font-family: 'robotomedium', sans-serif;
+    font-size: 28px;
+    color: $gray;
+    margin: 0;
+    padding: 0;
+}

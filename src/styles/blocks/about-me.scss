@@ -1,0 +1,151 @@
+.about-me {
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.about-me__main {
+    position: relative;
+}   
+
+.about-me__triangles {
+    @include screen-sm {
+        .traingle {
+            @include triangleColors(#ebefe2, #ebefe2)
+          }
+    }
+}
+
+.about-me__content  {
+    display: flex;
+    height: 100%;
+
+    @include screen-sm {
+        flex-direction: column;
+    }
+}
+
+.about-me__left {
+    display: flex;
+    align-items: flex-start;
+    width: 50%;
+    padding: rem(20px) rem(20px) rem(20px) 0;
+    background-color: #ebefe2;
+
+    @include screen-lg {
+        flex-direction: column;
+        padding: rem(20px) rem(70px) rem(20px) rem(70px);
+    }
+
+    @include screen-sm {
+        width: 100%;
+    }
+
+    @include screen-xs {
+        padding: 0;
+    }
+}
+
+.about-me__right {
+    width: 50%;
+    background-color: #f4f5f0;
+    padding: rem(20px) rem(35px);
+
+    @include screen-sm {
+        width: 100%;
+    }
+
+    @include screen-sm {
+        padding: rem(20px) 5%;
+    }
+}
+
+.about-me__title {
+    text-align: center;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+
+
+    @include screen-lg {
+        width: 100%;
+        margin-bottom: rem(30px);
+    }
+}
+
+.about-me__text {
+    margin-top: rem(25px);
+
+    @include screen-sm {
+        max-width: rem(490px);
+        margin: rem(25px) auto 0;
+    }
+}
+
+.about-me__user {
+    width: 50%;
+
+    @include screen-lg {
+        width: 100%;
+    }
+
+    @include screen-sm {
+        max-width: rem(490px);
+        margin: 0 auto;
+    }
+
+    @include screen-xs {
+        width: 100%;
+
+        .text {
+            padding: 0 5%;
+        }
+    }
+
+}
+
+.about-me__skills {
+    margin-top: rem(25px);
+}
+
+.about-me__map {
+    width: 100%;
+    height: 100vh;
+    min-height: rem(670px);
+    position: relative;
+}
+
+.about-me__contacts {
+    position: absolute;
+    top: 25vh;
+    left: 50%;
+    margin-left: rem(-190px);
+    z-index: 2;
+
+    @include screen-xs {
+        top: 0;
+        left: 0;
+        right: 0;
+        margin-left: rem(0px);
+
+    }
+}
+
+.about-me__footer {
+    width: 100%;
+    height: rem(185px);
+    margin-top: rem(-185px);
+    z-index: 2;
+    position: absolute;
+
+    @include screen-sm {
+        height: rem(235px);
+        margin-top: rem(-235px);
+    }
+
+    @include screen-xs {
+        height: rem(355px);
+        margin-top: rem(-355px);
+    }
+}

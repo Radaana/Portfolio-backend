@@ -1,0 +1,13 @@
+mixin nav(long) 
+    .nav
+        ul.nav__list
+            li.nav__item
+                a.nav__link(href="/works" title="Мои работы") Мои работы
+            li.nav__item
+                a.nav__link(href="/about" title="Обо мне") Обо мне
+            li.nav__item
+                a.nav__link(href="/blog" title="Блог") Блог
+            if long == 1 
+                li.nav__item
+                    a.nav__link(href="/index?auth=true" title="Авторизация") Авторизация
+                    //- a.nav__link(href="/" title="Авторизация") Авторизация

@@ -1,0 +1,27 @@
+.skill  {
+    position: relative;
+    display: inline-block;
+    width: rem(150px);
+    height: rem(150px);
+
+    @include screen-lg {
+        width: rem(120px);
+        height: rem(120px);
+    }
+}
+
+.skill__title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    font-size: rem(18px);
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1bb696;
+    font-weight: bold;
+
+    @include screen-lg {
+        font-size: rem(13px);
+    }
+}

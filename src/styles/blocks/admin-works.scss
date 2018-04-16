@@ -1,0 +1,13 @@
+.admin-works {
+    display: flex;
+    flex-direction: column;
+    padding: rem(50px) rem(30px);
+    // align-items: flex-start;
+}
+
+.works-btn {
+    color: $green;
+    text-align: left;
+    padding: rem(15px) rem(20px);
+    
+}

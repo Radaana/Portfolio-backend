@@ -1,0 +1,142 @@
+.admin-page {
+    background: url('../img/welcome-bg.jpg') center center no-repeat;
+    background-size: cover;
+    position: relative;
+    min-height: 100vh;
+
+    @include screen-sm {
+        background: url('../img/welcome-bg-sm.jpg') center center no-repeat;
+        background-size: cover;
+    }
+
+    @include screen-xs {
+        background: url('../img/welcome-bg-xs.jpg') center center no-repeat;
+        background-size: cover;
+    }
+}
+
+.admin {
+    background-color: rgba(#fff, 0.8);
+    width: 100%;
+    min-height: 100vh;
+}
+
+.admin__input {
+    background-color: #fff;
+    border-radius: 10px;
+    border: none;
+    color: $text;
+}
+
+.admin-header {
+    min-height: rem(80px);
+    width: 100%;
+    background-color: $green;
+    display: flex;
+    padding: rem(30px);
+    justify-content: space-between;
+    align-items: center;
+
+    @include screen-xs {
+        flex-direction: column;
+
+    }
+}
+
+.admin-header__title {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    @include screen-xs {
+        order: 5;
+    }
+}
+
+.admin-header__link {
+    color: rgba(#fff, 0.5);
+    text-decoration: underline;
+
+    @include screen-xs {
+        order: 1;
+        margin-bottom: rem(5px);
+    }
+}
+
+.admin-tabs {
+    display: flex;
+    background-color: #f0efe9;
+    width: 100%;
+
+    @include screen-xs {
+        flex-direction: column;
+    }
+}
+
+.admin-tabs__tab {
+    width: rem(180px);
+    height: rem(60px);
+    border-right: 2px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'robotomedium', sans-serif;
+    color: $text;
+
+    &:hover {
+        color: $green;
+        background-color: rgba(#fff, 0.8);
+    }
+
+    @include screen-xs {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid #fff;
+    }
+}
+
+.admin-main {
+    padding: rem(50px) rem(30px);
+    
+}
+
+.admin-main__title {
+    font-family: 'robotomedium', sans-serif;
+    text-transform: none;
+    font-size: rem(21px);
+    color: $text; 
+}
+
+.admin-main__subtitle {
+    font-family: 'robotomedium', sans-serif;
+    font-size: rem(16px); 
+    color: $text;
+    text-transform: none;
+    text-align: left;
+}
+
+.admin-main__inner {
+    width: rem(650px);
+    display: flex;
+    flex-wrap: wrap;
+
+    @include screen-sm {
+        width: 100%;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+}
+
+// .admin-main__group {
+//     width: 45%;
+
+// }
+
+.admin-btn {
+    background-color: $green;
+    color: #fff;
+    padding: rem(15px) rem(20px);
+    border-radius: 5px;
+    display: inline-block;
+    max-width: rem(120px);
+}

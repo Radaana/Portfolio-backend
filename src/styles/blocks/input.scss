@@ -1,0 +1,19 @@
+.input {
+    background-color: #fff;
+    padding: rem(15px);
+    width: 100%;
+    height: rem(45px);
+    border: none;
+    border-radius: 30px;
+    color: $text;
+
+    &--half-round {
+        border-radius: 0 30px 30px 0;
+    }
+
+    &.error {
+        border: 2px solid red;
+    
+        
+    }
+}

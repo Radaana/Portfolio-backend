@@ -1,0 +1,9 @@
+.arrow {
+    width: rem(26px);
+    height: rem(16px);
+
+    &:hover, &:focus {
+        transform: scale(2);
+    }
+}
+

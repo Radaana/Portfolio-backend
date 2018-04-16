@@ -1,0 +1,56 @@
+.header {
+    height: rem(600px);
+    width: 100%;
+    background: url('../img/welcome-bg.jpg') center center no-repeat;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+
+    @include screen-sm {
+        background: url('../img/welcome-bg-sm.jpg') center center no-repeat;
+    }
+
+    @include screen-xs {
+        background: url('../img/welcome-bg-xs.jpg') center center no-repeat;
+    }
+}    
+
+.header__socials {
+    position: absolute;
+    top: rem(35px);
+    left: rem(30px);
+    .socials__link {
+        opacity: 1;
+    }
+}
+
+.header__menu {
+    position: absolute;
+    z-index: 50;
+    top: rem(30px);
+    right: rem(30px);
+    width: 40px;
+    height: 35px;
+    // margin: 0;
+    padding: 0;
+    
+    &--fixed {
+        position: fixed;
+    }
+}
+
+.header__profile {
+    flex-grow: 1;
+}
+
+.header__arrow {
+    position: absolute;
+    bottom: rem(70px);
+    left: 50%;
+    margin-left: rem(-13px);
+    z-index: 4;
+}

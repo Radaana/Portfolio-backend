@@ -1,0 +1,58 @@
+extends ../pug/base
+
+block head
+    title Блог
+block content
+    .maincontent
+        .loader#loader
+            .loader__pic
+                each val in [1, 2, 3, 4, 5]
+                    .loader__circle
+                        .loader__inner
+        .section.blog
+            h1.visually-hidden Блог. Статьи, которые я написала      
+            header.header
+                .header__socials
+                    include ../pug/socials.pug
+                button.btn.header__menu(type="button")
+                    .hamburger-menu#hamburger-menu
+                        .hamburger-menu__bars
+                .section__backing
+                    svg.svg
+                        use(xlink:href="img/sprite.svg#blog_header") 
+                .photo
+                    img.img(src="img/me.jpg" alt="Леонидова Екатерина")
+                h2.section__title Блог
+                p.header__text Статьи, которые я написала  
+                button.btn.arrow.header__arrow(type="button")
+                    svg.svg(width="26" height="16")
+                        use(xlink:href="img/sprite.svg#arrow_down")       
+            main.blog__main
+                .triangles.triangles--sameColor
+                    svg(xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1000 85" preserveaspectratio="none" class="traingle")
+                        polygon(class="triangle__left" points="0,0   0,86   500.8,86   500.8,75.5")
+                        polygon(class="triangle__right" points="1000,0   1000,86   500,86   500,75.5") 
+                .contents.blog__contents#contents
+                    button.btn.blog-btn#blog-btn(type="button")
+                    aside.names.contents__left
+                        names-list(:posts="posts"  :cid="currentId" v-on:clicked="changeByClick")
+                    section.contents__right
+                        article-list(:posts="posts" v-on:change-id="currentIdChange")
+            include ../pug/footer.pug
+        .fullscreen
+            +nav(1) 
+block script
+    script(type="text/x-template",id="names-list")
+        ul.names__list
+            li.names__item(v-for= "post in posts")
+                a(v-if="post.id == cid" class="names__link names__link--active"  :href="'#'+post.id" v-on:click="handleClick") {{post.title}}
+                a(v-else class="names__link"  :href="'#'+post.id" v-on:click="handleClick") {{post.title}}
+    script(type="text/x-template",id="article-item")
+        article.article( :id="this.id")
+            h2.article__title {{post.title}}
+            time.article__date(:datetime="post.datetime")  {{post.date}}
+            .article__text(v-html="post.text")
+    script(type="text/x-template",id="article-list")
+        .contents__articles
+            article-item(v-for= "post in posts"  :key="post.id"  :post="post" v-on:message="handleMessage" )
+    script(src='scripts/blog.bundle.js')

@@ -1,0 +1,139 @@
+extends ../pug/base
+
+block head
+    title Мои работы
+block content
+    .maincontent
+        .loader#loader
+            .loader__pic
+                each val in [1, 2, 3, 4, 5]
+                    .loader__circle
+                        .loader__inner
+        section.section.works
+            h1.visually-hidden Мои работы и отзывы обо мне  
+            header.header
+                .header__socials
+                    include ../pug/socials.pug
+                button.btn.header__menu(type="button")
+                    .hamburger-menu#hamburger-menu
+                        .hamburger-menu__bars
+                .section__backing.section__backing--header
+                    svg.svg
+                        use(xlink:href="img/sprite.svg#portfolio_header") 
+                .profile.header__profile
+                    .photo
+                        img.img(src="img/me.jpg" alt="Леонидова Екатерина")
+                    h2.profile__title Леонидова Екатерина
+                    p.profile__text Веб-разработчик   
+                button.btn.arrow.header__arrow(type="button")
+                    svg.svg(width="26" height="16")
+                        use(xlink:href="img/sprite.svg#arrow_down")
+            main.works__main    
+                .triangles.triangles--sameColor
+                    svg(xmlns="http://www.w3.org/2000/svg" viewbox="0 0 1000 85" preserveaspectratio="none" class="traingle")
+                        polygon(class="triangle__left" points="0,0   0,86   500.8,86   500.8,75.5")
+                        polygon(class="triangle__right" points="1000,0   1000,86   500,86   500,75.5")  
+                section.works__content
+                    .section__title-box.works__title
+                        .section__backing.section__backing--subtitle
+                            svg.svg.svg--green
+                                use(xlink:href="img/sprite.svg#works_header") 
+                        h2.section__title.section__title--dark  Мои Работы
+                    .works__slider.slider#slider
+                            slider-info(:site="sites[i]")
+                            slider-display(:sites="sites"  :i="i")
+                            .slider__btns
+                                slider-part(:direction="direction[0]"  :sites="sites"  :i="i" v-on:arrow="handleArrow")
+                                slider-part(:direction="direction[1]"  :sites="sites"  :i="i" v-on:arrow="handleArrow")
+            section.works__about.speaking
+                .speaking__bg
+                    picture.speaking__img
+                        source.img(srcset="img/works-bg-sm.png" media="(max-width: 768px)")
+                        source.img(srcset="img/works-bg-xs.png" media="(max-width: 580px)")
+                        source.img(srcset="img/works-bg.png")
+                        img.img(srcset="img/works-bg.png" alt="Фон страницы")
+                .section__title-box
+                    .section__backing.section__backing--subtitle
+                        svg.svg.svg--green
+                            use(xlink:href="img/sprite.svg#about_header") 
+                    h2.section__title.section__title--dark.works__title  Что обо мне говорят
+                .testimonials.speaking__testimonials
+                    .testimonials__left.review
+                        .photo.photo--small
+                            img.img(src="img/Dmitry.jpg" alt="Дмитрий Ковальчук")
+                        blockquote.review__text Эта девушка проходила обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                        cite.review__cite
+                            .review__author Ковальчук Дмитрий
+                            .review__place - Loftschool
+                    .testimonials__right.review
+                        .photo.photo--small
+                            img.img(src="img/Linus.jpg" alt="Линус Торвальдс")
+                        blockquote.review__text Talk is cheap. Show me the code.
+                        cite.review__cite
+                            .review__author Linus Torvalds
+                            .review__place - The Linux Foundation
+                .speaking__form
+                .contact-me.speaking__contact-me
+                    .contact-me__bg 
+                    .contact-me__content#contact-me
+                        h3.section__subtitle.section__subtitle--dark.contact-me__title Связаться со мной
+                        contact-form
+                button.btn.arrow.speaking__arrow(type="button")
+                    svg.svg(width="26" height="16")
+                        use(xlink:href="img/sprite.svg#portf_arrow_up")
+            .works__footer
+                include ../pug/footer.pug
+            .fullscreen
+                +nav(1)   
+block script
+    script(type="text/x-template",id="slider-info")
+        .slider__info 
+            h3.section__subtitle.slider__title {{site.title}}
+            .slider__desc {{site.desc}}
+            a.slider__link.link-btn(:href="site.link" target="_blank"  :title="site.title")
+                span.link-btn__icon
+                    svg.link-btn__svg
+                        use(xlink:href="img/sprite.svg#link")
+                span.link-btn__link-text Посмотреть сайт
+    script(type="text/x-template",id="slider-display")
+        .slider__display 
+            transition-group(name="fade" mode="out-in" tag="div")
+                .slider__work(v-for="(site, index) in sites"  v-if="index==i"  :key="site.id")
+                    img.img(:src="site.src"  :alt="site.title")
+    script(type="text/x-template",id="slider-part")
+        .slider__bottom(v-if="direction == 'down'" class="slider--first" )
+            .slider__thumbnails
+                transition-group(name="component-fade" mode="out-in" tag="div")
+                    .slider__thumbnail(v-for="(site, index) in sites"  v-if="index==nextI"  :key="site.id")
+                        img.img( :src="site.src"  :alt="site.title"  :id="index" )
+            button.btn.slider__btn(type="button" @click="handleClick")
+                .arrow.slider__arrow
+                    svg.svg
+                        use(xlink:href="img/sprite.svg#arrow_down")
+        .slider__bottom(v-else class="slider--opposite" )   
+            .slider__thumbnails
+                transition-group(name="component-opposite" mode="out-in" tag="div")
+                    .slider__thumbnail(v-for="(site, index) in sites"  v-if="index==previousI"  :key="site.id")
+                        img.img( :src="site.src"  :alt="site.title"  :id="index" )
+            button.btn.slider__btn(type="button" @click="handleClick")
+                .arrow.slider__arrow
+                    svg.svg
+                        use(xlink:href="img/sprite.svg#portf_arrow_up")
+    script(type="text/x-template",id="contact-form")
+        form.contact-me__form.form.form--contact(action="")
+            .form__input
+                .form__message {{ validation.firstError('name') }}
+                label.visually-hidden(for="name") Имя
+                input.input(v-model="name"  :class="{error: validation.hasError('name')}" type="text" name="name" placeholder="Имя (*)" id="name") 
+            .form__input
+                .form__message {{ validation.firstError('email') }}
+                label.visually-hidden(for="email") Email
+                input.input(v-model="email"  :class="{error: validation.hasError('email')}"  type="text" name="email" placeholder="Email (*)" id="email") 
+            .form__input
+                .form__message {{ validation.firstError('comment') }}
+                label.visually-hidden(for="comment") Ваше сообщение
+                textarea.textarea.form__textarea(v-model="comment"  :class="{error: validation.hasError('comment')}" name="comment" placeholder="Ваше сообщение (*)" id="comment" rows="7")
+            .form__buttons 
+                button.btn.form__btn(@click.prevent="submit" type="button") Отправить
+                button.btn.form__btn(type="reset") Очистить
+    script(src='scripts/works.bundle.js')    
