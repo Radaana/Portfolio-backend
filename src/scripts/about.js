@@ -1,6 +1,10 @@
 let Vue = require ('vue/dist/vue');
 let ham = require ('./modules/hamburger');
 let loader = require ('./modules/preloader');
+let axios = require ('axios');
+let VueAxios = require ('vue-axios');
+
+Vue.use(VueAxios, axios);
 
 loader.init();
 
@@ -8,33 +12,44 @@ ham.init();
 
 Vue.component('skills-item', {
     template: "#skills-item",
-    props: ['skill']
+    props: {
+      skill: Object
+    },
   });
   
   Vue.component("skills-list", {
     template: "#skills-list",
-    props: ['items'],
+    props: {
+      type: String,
+      skills: Array
+    },
     data() {
       return {
       }
     },
+    methods: {
+      convertSkillStringToNum(skillGroupName) {
+        switch (skillGroupName) {
+          case "frontend":
+            return 1;
+          case "workflow":
+            return 2;
+          case "backend":
+            return 3;
+        }
+      },
+    }
   });
   
   const skills = new Vue({
     data: {
-      frontend: { title: 'Frontend', 
-                  skills: [ {name : 'HTML', level: 90}, 
-                            {name: 'CSS', level: 80}, 
-                            {name: 'JavaScript & jQuery', level: 50}]}, 
-      backend: { title : 'Backend', 
-                  skills: [ { name: 'PHP', level: 15}, 
-                            { name: 'mySQL', level: 15}, 
-                            { name: 'Node.js & npm', level: 15}, 
-                            { name: 'MongoDB', level: 15}]}, 
-      workflow: { title : 'Workflow', 
-                  skills: [ {name: 'Git', level: 50}, 
-                            {name: 'Gulp', level: 40}, 
-                            {name: 'Bower', level: 35}]}
+      skills: null,
+      skillsTypes: ["frontend", "workflow", "backend"]
+    },
+    mounted() { 
+      axios.get(`http://localhost:3000/api/skills`).then(rs => {
+          this.skills = rs.data.skills;
+        });
     }
   }); // Vue end
   
