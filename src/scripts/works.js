@@ -93,34 +93,27 @@ window.onresize = function () {
     data: {
         i: 0,
         direction: ["down", "up"],
-        sites: [
+        sites: [        
             {
                 id: 101,
-                title: "Сайт школы онлайн образования",
-                desc: "HTML, CSS, JAVASCRIPT",
-                src: "img/work-1.png",
-                link: "https://loftschool.com",
+                title: "Лендинг для магазина бургеров",
+                desc: "HTML, CSS, javaScript, jQuery",
+                src: "img/burger.jpg",
+                link: "https://radaana.github.io/BurgerShop/",
             },
             {
                 id: 102,
-                title: "Сайт",
-                desc: "HTML, CSS",
-                src: "img/work-2.png",
-                link: "https://loftschool.com",
+                title: "Сайт ресторана",
+                desc: "HTML, CSS, javaScript, jQuery",
+                src: "img/resto.jpg",
+                link: "https://radaana.github.io/Resto-restaurant/build/index.html",
             },
             {
                 id: 103,
-                title: "Мой самый любимый сайт",
-                desc: "HTML, CSS, JAVASCRIPT, VUE",
-                src: "img/work-3.png",
-                link: "https://loftschool.com",
-            },
-            {
-                id: 104,
-                title: "Мой самый лучший сайт",
-                desc: "HTML, CSS, JAVASCRIPT, VUE",
-                src: "img/work-4.png",
-                link: "https://loftschool.com",
+                title: "Сайт кофейни",
+                desc: "HTML, CSS, javaScript",
+                src: "img/latte.jpg",
+                link: "https://radaana.github.io/Be-Latte/build/index.html",
             },
         ]
     }, // data END
