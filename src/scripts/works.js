@@ -5,9 +5,9 @@ let loader = require ('./modules/preloader');
 loader.init();
 
 let Vue = require ('vue/dist/vue');
-var SimpleVueValidation = require('simple-vue-validator');
+let SimpleVueValidation = require('simple-vue-validator');
 
-var Validator = SimpleVueValidation.Validator;
+let Validator = SimpleVueValidation.Validator;
 Vue.use(SimpleVueValidation);
 
 let axios = require ('axios');
@@ -93,29 +93,27 @@ window.onresize = function () {
     data: {
         i: 0,
         direction: ["down", "up"],
-        sites: [        
-            {
-                id: 101,
-                title: "Лендинг для магазина бургеров",
-                desc: "HTML, CSS, javaScript, jQuery",
-                src: "img/burger.jpg",
-                link: "https://radaana.github.io/BurgerShop/",
-            },
-            {
-                id: 102,
-                title: "Сайт ресторана",
-                desc: "HTML, CSS, javaScript, jQuery",
-                src: "img/resto.jpg",
-                link: "https://radaana.github.io/Resto-restaurant/build/index.html",
-            },
-            {
-                id: 103,
-                title: "Сайт кофейни",
-                desc: "HTML, CSS, javaScript",
-                src: "img/latte.jpg",
-                link: "https://radaana.github.io/Be-Latte/build/index.html",
-            },
-        ]
+        sites: null
+        // [        
+        //     {
+        //         "name": "Лендинг для магазина бургеров",
+        //         "tech": "HTML, CSS, javaScript, jQuery",
+        //         "picture": "img/burger.jpg",
+        //         "link": "https://radaana.github.io/BurgerShop/",
+        //     },
+        //     {
+        //         "name": "Сайт ресторана",
+        //         "tech": "HTML, CSS, javaScript, jQuery",
+        //         "picture": "img/resto.jpg",
+        //         "link": "https://radaana.github.io/Resto-restaurant/build/index.html"
+        //     },
+        //     {
+        //         "name": "Сайт кофейни",
+        //         "tech": "HTML, CSS, javaScript",
+        //         "picture": "img/latte.jpg",
+        //         "link": "https://radaana.github.io/Be-Latte/build/index.html"
+        //     },
+        // ]
     }, // data END
     methods: {
         handleArrow: function(dir) {
@@ -131,7 +129,12 @@ window.onresize = function () {
                 this.i = i < 0 ? length-1 : i;
             }
         },
-      }
+    },
+    mounted() { 
+        axios.get(`http://localhost:3000/api/works`).then(rs => {
+            this.sites = rs.data.works;
+            });
+    },
   }); // Vue end
   
   slider.$mount("#slider");

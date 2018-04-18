@@ -24,7 +24,8 @@ module.exports.createWork = function (req, res) {
   let item = new Model({
     name: req.body.name,
     tech: req.body.tech,
-    picture: req.body.picture
+    picture: req.body.picture,
+    link: req.body.link
   });
   // сохраняем запись в базе
   item
