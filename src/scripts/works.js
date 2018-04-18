@@ -15,10 +15,11 @@ let VueAxios = require ('vue-axios');
 
 Vue.use(VueAxios, axios);
 
-ham.init();
+
 
 window.onload= function () {
     blur.init();
+    ham.init();
 };
 
 window.onresize = function () {
@@ -93,31 +94,11 @@ window.onresize = function () {
     data: {
         i: 0,
         direction: ["down", "up"],
-        sites: null
-        // [        
-        //     {
-        //         "name": "Лендинг для магазина бургеров",
-        //         "tech": "HTML, CSS, javaScript, jQuery",
-        //         "picture": "img/burger.jpg",
-        //         "link": "https://radaana.github.io/BurgerShop/",
-        //     },
-        //     {
-        //         "name": "Сайт ресторана",
-        //         "tech": "HTML, CSS, javaScript, jQuery",
-        //         "picture": "img/resto.jpg",
-        //         "link": "https://radaana.github.io/Resto-restaurant/build/index.html"
-        //     },
-        //     {
-        //         "name": "Сайт кофейни",
-        //         "tech": "HTML, CSS, javaScript",
-        //         "picture": "img/latte.jpg",
-        //         "link": "https://radaana.github.io/Be-Latte/build/index.html"
-        //     },
-        // ]
+        sites: null,
+        
     }, // data END
     methods: {
         handleArrow: function(dir) {
-            // console.log('got it');
             let i = this.i;
             let length = this.sites.length;
             if (dir.direction == 'up') {
@@ -128,7 +109,7 @@ window.onresize = function () {
                 i--;
                 this.i = i < 0 ? length-1 : i;
             }
-        },
+        },       
     },
     mounted() { 
         axios.get(`http://localhost:3000/api/works`).then(rs => {
@@ -154,11 +135,11 @@ window.onresize = function () {
         email: '',
         comment: '',
         data: null,
+        sent: false,
       }
     },
     methods: {
         submit: function () {
-            // console.log( this.$validate() );
             this.$validate()
               .then((success) => {
                 if (!success) {return}
@@ -168,14 +149,26 @@ window.onresize = function () {
                     email: this.email,
                     comment: this.comment,
                   };
-                axios.post('http://localhost:3000/works', this.data).then(rs => { //авторизация
+                axios.post('http://localhost:3000/works', this.data).then(rs => { //отправка письма
                     this.name = '';
                     this.email = '';
                     this.comment = '';
-
+                    
                     this.validation.reset(); 
+
+                    this.sent = true;
                 });
               });
+        },
+        reset: function() {
+            this.name = '';
+            this.email = '';
+            this.comment = '';
+            
+            this.validation.reset(); 
+        },
+        sentOk: function() {
+            this.sent = false;
         }
     },
     mixins: [require('simple-vue-validator').mixin],
@@ -193,8 +186,7 @@ window.onresize = function () {
     }); //slider-display 
   
 const contactMe = new Vue({
-    data: {
-    }
+    data: {    }
 }); // Vue end
 
 contactMe.$mount("#contact-me")

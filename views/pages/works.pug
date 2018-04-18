@@ -40,7 +40,7 @@ block content
                                 use(xlink:href="img/sprite.svg#works_header") 
                         h2.section__title.section__title--dark  Мои Работы
                     .works__slider.slider#slider
-                            slider-info(:site="sites[i]")
+                            slider-info(v-if="sites"  :site="sites[i]")
                             slider-display(:sites="sites"  :i="i")
                             .slider__btns
                                 slider-part(:direction="direction[0]"  :sites="sites"  :i="i" v-on:arrow="handleArrow")
@@ -121,6 +121,9 @@ block script
                         use(xlink:href="img/sprite.svg#portf_arrow_up")
     script(type="text/x-template",id="contact-form")
         form.contact-me__form.form.form--contact(action="")
+            .form__sent(v-if="sent")
+                span.form__text Сообщение успешно отправлено
+                button.btn.form__btn.form__btn--round(@click="sentOk" type="button") Закрыть
             .form__input
                 .form__message {{ validation.firstError('name') }}
                 label.visually-hidden(for="name") Имя
@@ -135,5 +138,6 @@ block script
                 textarea.textarea.form__textarea(v-model="comment"  :class="{error: validation.hasError('comment')}" name="comment" placeholder="Ваше сообщение (*)" id="comment" rows="7")
             .form__buttons 
                 button.btn.form__btn(@click.prevent="submit" type="button") Отправить
-                button.btn.form__btn(type="reset") Очистить
+                button.btn.form__btn(@click.prevent="reset" type="reset") Очистить
+            
     script(src='scripts/works.bundle.js')    
