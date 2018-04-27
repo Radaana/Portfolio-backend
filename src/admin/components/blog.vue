@@ -44,7 +44,7 @@ export default {
                 if (!success) return;
                 this.axios({
                     method: 'post',
-                    url: 'http://localhost:3000/api/blog',
+                    url: '/api/blog',
                     data: {
                     title: this.title,
                     date: this.date,

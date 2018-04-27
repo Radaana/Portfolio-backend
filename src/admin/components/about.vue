@@ -30,7 +30,7 @@ export default {
   methods: {
     // ...mapActions(['fetchSkills'])
     updateList() {
-      this.axios.get(`http://localhost:3000/api/skills`).then(rs => {
+      this.axios.get(`/api/skills`).then(rs => {
         this.skills = rs.data.skills;
       });
     }
@@ -38,7 +38,7 @@ export default {
   mounted() { 
     // this.fetchSkills();
     // console.log('akcio');
-    this.axios.get(`http://localhost:3000/api/skills`).then(rs => {
+    this.axios.get(`/api/skills`).then(rs => {
         this.skills = rs.data.skills;
       });
   }

@@ -52,7 +52,7 @@ export default {
         formData.append('name', this.name);
         formData.append('tech', this.tech);
         formData.append('link', this.link);
-        this.axios.post('http://localhost:3000/admin', formData)
+        this.axios.post('/admin', formData)
         .then(rs => {
           this.msgfile = rs.data.msg;
           if (rs.data.status === 'Ok') {

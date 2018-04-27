@@ -112,7 +112,7 @@ window.onresize = function () {
         },       
     },
     mounted() { 
-        axios.get(`188.225.26.32/api/works`).then(rs => {
+        axios.get(`api/works`).then(rs => {
             this.sites = rs.data.works;
             });
     },
@@ -149,7 +149,7 @@ window.onresize = function () {
                     email: this.email,
                     comment: this.comment,
                   };
-                axios.post('188.225.26.32:3000/works', this.data).then(rs => { //отправка письма
+                axios.post('/works', this.data).then(rs => { //отправка письма
                     this.name = '';
                     this.email = '';
                     this.comment = '';

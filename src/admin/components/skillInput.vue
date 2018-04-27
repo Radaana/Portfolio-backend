@@ -43,7 +43,7 @@ export default {
       this.$validate().then(success => {
         if (!success) return;
         // this.addSkill(newSkill);
-        this.axios.post(`http://localhost:3000/api/skills`, newSkill).then(rs => {
+        this.axios.post(`/api/skills`, newSkill).then(rs => {
           this.skillName = "";
           this.validation.reset();
           console.log(rs.data.status);

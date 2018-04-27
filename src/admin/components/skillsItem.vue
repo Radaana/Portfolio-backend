@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     removeExistedSkill(id) {
-      this.axios.delete(`http://localhost:3000/api/skills/${id}`).then(rs => {
+      this.axios.delete(`/api/skills/${id}`).then(rs => {
         // this.skills = rs.data.skills;
         this.$emit('skillDeleted');
       });
@@ -39,7 +39,7 @@ export default {
         if (!success) return;
         let envelope = { percents : newPercents};
         // this.addSkill(newSkill);
-        this.axios.put(`http://localhost:3000/api/skills/${id}`, envelope).then(rs => {
+        this.axios.put(`/api/skills/${id}`, envelope).then(rs => {
           this.validation.reset();
           console.log(rs.data.status);
           this.$emit('setPercents');

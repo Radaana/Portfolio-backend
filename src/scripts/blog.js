@@ -97,7 +97,7 @@ Vue.component('article-list', {
         }
       },
     mounted() { 
-        axios.get(`188.225.26.32:3000/api/blog`).then(rs => {
+        axios.get(`api/blog`).then(rs => {
             this.posts = rs.data.articles;
             this.currentId = this.posts[0]._id;
             });
