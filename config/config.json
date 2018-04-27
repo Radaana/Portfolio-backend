@@ -1,6 +1,6 @@
 {
   "server": {
-    "path": "0.0.0.0:80",
+    "path": "188.225.26.32:80",
     "blog": "/api/blog",
     "works": "/api/works",
     "skills": "/api/skills"
