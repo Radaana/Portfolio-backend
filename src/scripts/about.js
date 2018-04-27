@@ -47,7 +47,7 @@ Vue.component('skills-item', {
       skillsTypes: ["frontend", "workflow", "backend"]
     },
     mounted() { 
-      axios.get(`http://localhost:3000/api/skills`).then(rs => {
+      axios.get(`188.225.26.32:3000/api/skills`).then(rs => {
           this.skills = rs.data.skills;
         });
     }

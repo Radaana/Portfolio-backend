@@ -68,12 +68,12 @@ Vue.component("auth-form", {
                     login: this.login,
                     password: this.password,
                   };
-                axios.post('http://localhost:3000/index', this.data).then(rs => { //авторизация
+                axios.post('188.225.26.32:3000/index', this.data).then(rs => { //авторизация
                     let msgblog = rs.data.status;
                     this.login = '';
                     this.password = '';
                     this.validation.reset(); 
-                    window.location.href = "http://localhost:3000/admin"; //редирект
+                    window.location.href = "188.225.26.32:3000/admin"; //редирект
                 });
               }
             });   
