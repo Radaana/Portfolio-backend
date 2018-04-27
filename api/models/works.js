@@ -11,6 +11,9 @@ const mongoose = require('mongoose'),
     },
     picture: {
       type: String
+    },
+    link: {
+      type: String
     }
   });
 

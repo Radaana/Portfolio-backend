@@ -51,16 +51,14 @@ block content
                         h3.section__subtitle.about-me__subtitle Чем я могу быть вам полезна
                         .text.about-me__text Больше всего меня привлекает Frontend разработка, но я могу решать несложные задачи на Backend. Ниже список моих навыков: 
                         ul.skills__list.about-me__skills.skills#skills
-                            skills-list(:items="frontend")
-                            skills-list(:items="backend")
-                            skills-list(:items="workflow")
+                            skills-list(v-for="skillType in skillsTypes"  :key="skillType"  :type="skillType"  :skills="skills")
             section.about-me__map
                 .map#map
                 .contacts.about-me__contacts
                     .contacts__title
                         h2.section__subtitle Контакты
                     ul.contacts__list
-                        - var contacts = [ ['skype', 'iscazia'], ['envelope', 'leonidovaes@gmail.com'], ['phone', '+7 916 --- -- --'], ['map_marker', 'Москва, м. Проспект Вернадского'] ]
+                        - var contacts = [ ['envelope', 'leonidovaes@gmail.com'], ['phone', '+7 916 643 35 86'], ['map_marker', 'Москва, м. Проспект Вернадского'] ]
                         each contact in contacts
                             li.contacts__row
                                 .contacts__icon
@@ -77,13 +75,13 @@ block script
         li.skills__skill.skill 
             svg.skill__circle.circle(viewBox="0 0 110 110")
                 circle(r="45" cx="50%" cy="50%" fill="none" class="circle__first")
-                circle(r="45" cx="50%" cy="50%" transform="rotate(-90 55 55)" class="circle__second"  :class="'circle__second--' + skill.level ")
+                circle(r="45" cx="50%" cy="50%" transform="rotate(-90 55 55)" class="circle__second"  :class="'circle__second--' + skill.percents ")
             .skill__title {{skill.name}}
     script(type="text/x-template" id="skills-list")
             li.skills__item
-                h4.skills__title {{items.title}}
+                h4.skills__title {{type}}
                 ul.skills__row
-                    skills-item(v-for="item in items.skills"  :skill="item"  :key="item.id")
+                    skills-item(v-for="skill in skills" v-if="convertSkillStringToNum(type) === skill.type"  :key="skill.id"  :skill="skill" )
     script(src='scripts/about.bundle.js')
     script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyCdiqpmw5rW0CewRcKKUTZCtx4ePiFkEBA&callback=initMap')             
     

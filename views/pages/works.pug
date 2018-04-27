@@ -40,7 +40,7 @@ block content
                                 use(xlink:href="img/sprite.svg#works_header") 
                         h2.section__title.section__title--dark  Мои Работы
                     .works__slider.slider#slider
-                            slider-info(:site="sites[i]")
+                            slider-info(v-if="sites"  :site="sites[i]")
                             slider-display(:sites="sites"  :i="i")
                             .slider__btns
                                 slider-part(:direction="direction[0]"  :sites="sites"  :i="i" v-on:arrow="handleArrow")
@@ -88,9 +88,9 @@ block content
 block script
     script(type="text/x-template",id="slider-info")
         .slider__info 
-            h3.section__subtitle.slider__title {{site.title}}
-            .slider__desc {{site.desc}}
-            a.slider__link.link-btn(:href="site.link" target="_blank"  :title="site.title")
+            h3.section__subtitle.slider__title {{site.name}}
+            .slider__desc {{site.tech}}
+            a.slider__link.link-btn(:href="site.link" target="_blank"  :title="site.name")
                 span.link-btn__icon
                     svg.link-btn__svg
                         use(xlink:href="img/sprite.svg#link")
@@ -98,14 +98,14 @@ block script
     script(type="text/x-template",id="slider-display")
         .slider__display 
             transition-group(name="fade" mode="out-in" tag="div")
-                .slider__work(v-for="(site, index) in sites"  v-if="index==i"  :key="site.id")
-                    img.img(:src="site.src"  :alt="site.title")
+                .slider__work(v-for="(site, index) in sites"  v-if="index==i"  :key="site._id")
+                    img.img(:src="site.picture"  :alt="site.name")
     script(type="text/x-template",id="slider-part")
         .slider__bottom(v-if="direction == 'down'" class="slider--first" )
             .slider__thumbnails
                 transition-group(name="component-fade" mode="out-in" tag="div")
-                    .slider__thumbnail(v-for="(site, index) in sites"  v-if="index==nextI"  :key="site.id")
-                        img.img( :src="site.src"  :alt="site.title"  :id="index" )
+                    .slider__thumbnail(v-for="(site, index) in sites"  v-if="index==nextI"  :key="site._id")
+                        img.img( :src="site.picture"  :alt="site.name"  :id="index" )
             button.btn.slider__btn(type="button" @click="handleClick")
                 .arrow.slider__arrow
                     svg.svg
@@ -113,14 +113,17 @@ block script
         .slider__bottom(v-else class="slider--opposite" )   
             .slider__thumbnails
                 transition-group(name="component-opposite" mode="out-in" tag="div")
-                    .slider__thumbnail(v-for="(site, index) in sites"  v-if="index==previousI"  :key="site.id")
-                        img.img( :src="site.src"  :alt="site.title"  :id="index" )
+                    .slider__thumbnail(v-for="(site, index) in sites"  v-if="index==previousI"  :key="site._id")
+                        img.img( :src="site.picture"  :alt="site.name"  :id="index" )
             button.btn.slider__btn(type="button" @click="handleClick")
                 .arrow.slider__arrow
                     svg.svg
                         use(xlink:href="img/sprite.svg#portf_arrow_up")
     script(type="text/x-template",id="contact-form")
         form.contact-me__form.form.form--contact(action="")
+            .form__sent(v-if="sent")
+                span.form__text Сообщение успешно отправлено
+                button.btn.form__btn.form__btn--round(@click="sentOk" type="button") Закрыть
             .form__input
                 .form__message {{ validation.firstError('name') }}
                 label.visually-hidden(for="name") Имя
@@ -135,5 +138,6 @@ block script
                 textarea.textarea.form__textarea(v-model="comment"  :class="{error: validation.hasError('comment')}" name="comment" placeholder="Ваше сообщение (*)" id="comment" rows="7")
             .form__buttons 
                 button.btn.form__btn(@click.prevent="submit" type="button") Отправить
-                button.btn.form__btn(type="reset") Очистить
+                button.btn.form__btn(@click.prevent="reset" type="reset") Очистить
+            
     script(src='scripts/works.bundle.js')    

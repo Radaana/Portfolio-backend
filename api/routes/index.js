@@ -24,7 +24,8 @@ router.post('/skills', ctrlSkills.createSkills); // CREATE
 router.put('/skills/:id', ctrlSkills.editSkills); // EDIT
 router.delete('/skills/:id', ctrlSkills.deleteSkills); // DELETE
 //Роутинг работ
-router.post('/works', ctrlWorks.createWork);
+router.get('/works', ctrlWorks.getWorks); // READ
+router.post('/works', ctrlWorks.createWork); // CREATE
 //Не нашел ничего
 router.get('*', (req, res) => {
   res.status(404).json({msg: 'Not found', err: 404});

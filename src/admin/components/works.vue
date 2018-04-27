@@ -3,11 +3,14 @@
     h2.admin-main__title Страница "Мои работы"
     h3.admin-main__subtitle Добавить работу
     .admin-works__group
-      input.admin__input.admin-works__input(v-model="name" type="text"  placeholder="Название проекта"  :class="{error : validation.hasError('title')}")
+      input.admin__input.admin-works__input(v-model="name" type="text"  placeholder="Название проекта"  :class="{error : validation.hasError('name')}")
       .form__message {{ validation.firstError('name') }}
     .admin-works__group
-      input.admin__input.admin-works__input(v-model="tech" type="text"  placeholder="Технологии"  :class="{error : validation.hasError('title')}")
+      input.admin__input.admin-works__input(v-model="tech" type="text"  placeholder="Технологии"  :class="{error : validation.hasError('tech')}")
       .form__message {{ validation.firstError('tech') }}
+    .admin-works__group
+      input.admin__input.admin-works__input(v-model="link" type="text"  placeholder="Cсылка на сайт"  :class="{error : validation.hasError('link')}")
+      .form__message {{ validation.firstError('link') }}
     button.btn.works-btn(type="button") Загрузить картинку     
     input.admin__input.admin-works__input(:photo="photo" type="file" required accept="image/*" @change="fileChange($event.target.files)" ref="upload")  
     button.btn.admin-btn(type="submit") Добавить
@@ -23,6 +26,7 @@ export default {
     return {
       name: '',
       tech: '',
+      link: '',
       photo: null,
       msgfile: ''
     };
@@ -35,6 +39,9 @@ export default {
       tech: value => {
           return Validator.value(value).required("Стек не может быть пустым");
       },
+      link: value => {
+          return Validator.value(value).required("Ссылка не может быть пустой");
+      },
   }, 
   methods: {
     sendFile: function() {
@@ -44,6 +51,7 @@ export default {
         formData.append('photo', this.photo, this.photo.name);
         formData.append('name', this.name);
         formData.append('tech', this.tech);
+        formData.append('link', this.link);
         this.axios.post('http://localhost:3000/admin', formData)
         .then(rs => {
           this.msgfile = rs.data.msg;

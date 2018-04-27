@@ -45,14 +45,14 @@ block script
     script(type="text/x-template",id="names-list")
         ul.names__list
             li.names__item(v-for= "post in posts")
-                a(v-if="post.id == cid" class="names__link names__link--active"  :href="'#'+post.id" v-on:click="handleClick") {{post.title}}
-                a(v-else class="names__link"  :href="'#'+post.id" v-on:click="handleClick") {{post.title}}
+                a(v-if="post._id == cid" class="names__link names__link--active"  :href="'#'+post._id" v-on:click="handleClick") {{post.title}}
+                a(v-else class="names__link"  :href="'#'+post._id" v-on:click="handleClick") {{post.title}}
     script(type="text/x-template",id="article-item")
         article.article( :id="this.id")
             h2.article__title {{post.title}}
-            time.article__date(:datetime="post.datetime")  {{post.date}}
-            .article__text(v-html="post.text")
+            time.article__date(:datetime="post.date")  {{date}}
+            .article__text(v-html="post.body")
     script(type="text/x-template",id="article-list")
         .contents__articles
-            article-item(v-for= "post in posts"  :key="post.id"  :post="post" v-on:message="handleMessage" )
+            article-item(v-for= "post in posts"  :key="post._id"  :post="post" v-on:message="handleMessage" )
     script(src='scripts/blog.bundle.js')

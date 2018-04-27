@@ -96,7 +96,9 @@
     height: 100%;
     overflow: hidden;
     position: absolute;
+    
     display: flex;
+    justify-content: center;
     flex-direction: column;
     // top: -50%;
     
@@ -106,19 +108,13 @@
 .slider__thumbnail {
     width: 80%;
     height: 80%;
+    margin: auto;
     position: absolute;
     overflow: hidden;
     top: 10%;
     left: 10%;
     // transform: translate()
 
-    // &--top {
-    //     top: -100%;
-    // }
-
-    // &--bottom {
-    //     top: 100%;
-    // }
 }
 
 .component-fade-enter-active, .component-fade-leave-active {
